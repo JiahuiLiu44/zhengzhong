@@ -383,7 +383,8 @@ input {
 }
 
 .result-panel {
-  align-self: start;
+  align-self: stretch;
+  width: 100%;
 }
 
 .result-card {
