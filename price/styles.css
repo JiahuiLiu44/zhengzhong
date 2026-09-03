@@ -541,6 +541,10 @@ input {
   color: var(--amber);
 }
 
+.amount.informational {
+  white-space: nowrap;
+}
+
 .addon-price-grid {
   margin-top: 14px;
   display: grid;

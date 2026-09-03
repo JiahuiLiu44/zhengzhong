@@ -155,6 +155,7 @@ function fulfillmentLines() {
     finalRate,
     `${volume.label} · ${pricing.weightLabels[weightBand]} · ${productType === "sensitive" ? "敏感货+$0.10/单" : "普货"}`
   );
+  lines.push(QuotePricingPolicy.additionalItemLine());
 
   const skuTier = selectedRadio("skuCountTier") || "one";
   const skuPricing = {
@@ -223,7 +224,7 @@ function renderResult() {
         <strong>${line.name}</strong>
         <small>${line.detail}</small>
       </div>
-      <div class="amount ${line.manual ? "manual" : ""}">${line.manual ? "单询" : money(line.amount)}</div>
+      <div class="amount ${line.manual ? "manual" : ""} ${line.informational ? "informational" : ""}">${line.manual ? "单询" : line.informational ? line.display : money(line.amount)}</div>
     </div>
   `).join("") : `<div class="line-row"><div><strong>暂无费用</strong><small>选择服务后生成明细</small></div><div class="amount">$0.00</div></div>`;
 
@@ -266,7 +267,7 @@ function setAddonCollapse(expanded) {
 function renderRules(service) {
   const rules = {
     fulfillment: [
-      "一件代发费用为：订单处理 + 扫码验货 + 打包 + 扫码出库。",
+      "一件代发费用为：订单处理 + 扫码验货 + 打包 + 扫码出库；同一订单第2件起，续件费为 $0.30/件。",
       "抛货取体积重和实际重量中的较大值，体积重按长 × 宽 × 高（cm）/ 6000 或长 × 宽 × 高（inch）/ 167 计算。",
       "订单处理费按单个订单对应的票总重量计费；一票多 SKU 按打包后的包裹总重量计费。",
       "订单处理时效为 24 小时（工作日）；耗材、退货、清点上架和其他增值服务按所选项目另计。",
