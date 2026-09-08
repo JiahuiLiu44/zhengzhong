@@ -18,8 +18,8 @@ const pricing = {
     },
   },
   y2Exchange: {
-    standard: { label: "0-1000 单", price: 0.4 },
-    bulk: { label: "1000+ 单", price: 0.35 },
+    standard: { label: "0-1000 单", price: 0.35 },
+    bulk: { label: "1000+ 单", price: 0.3 },
   },
   whatnot: {
     unknown: { label: "0-50 单（未知）", price: 0.6 },
@@ -274,7 +274,7 @@ function renderRules(service) {
     ],
     y2Exchange: [
       "Y2换单按客户选择的单量档位计费。",
-      "0-1000 单为 $0.40/单，1000+ 单为 $0.35/单。",
+      "0-1000 单为 $0.35/单，1000+ 单为 $0.30/单。",
       "如涉及特殊渠道、异常处理或额外人工操作，以人工确认为准。",
       "最终费用以实际订单数据和系统记录为准。",
     ],
