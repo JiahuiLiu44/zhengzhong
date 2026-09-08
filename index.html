@@ -231,7 +231,7 @@ ul{list-style:none;}
 .ss-icon{font-size:28px;margin-bottom:8px;}
 .ss-name{font-size:13px;font-weight:700;color:var(--navy-dark);margin-bottom:3px;}
 .ss-desc{font-size:11px;color:var(--gray-400);}
-.ss-arrow{color:var(--gray-200);font-size:18px;padding:0 4px;align-self:center;margin-bottom:18px;}
+.ss-arrow{color:var(--gray-200);font-size:18px;padding:0 4px;align-self:center;margin-bottom:0;}
 
 /* --- Circle loop flow (FBM / FBA / Return style: 2-row loop) --- */
 .loop-flow{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:36px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:18px;padding:36px;}
@@ -250,6 +250,8 @@ ul{list-style:none;}
 .ln-label{font-size:12px;font-weight:700;color:var(--navy-dark);text-align:center;}
 .loop-arr{color:var(--green-mid);font-size:20px;font-weight:700;align-self:center;margin-bottom:22px;}
 .loop-arr.down{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:22px;}
+.loop-turn-row{display:grid;grid-template-columns:repeat(3,80px);justify-content:space-between;margin-bottom:20px;}
+.loop-turn-arrow{grid-column:3;justify-self:center;color:var(--green-mid);font-size:22px;font-weight:700;}
 
 /* --- Linear step flow (simple boxes + arrows) --- */
 .linear-flow{display:flex;align-items:stretch;border-radius:14px;overflow:hidden;border:1px solid var(--gray-200);margin-bottom:36px;background:#fff;}
@@ -272,7 +274,7 @@ ul{list-style:none;}
 .sys-center-box h4{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;margin-bottom:3px;}
 .sys-center-box p{font-size:11px;color:rgba(255,255,255,.65);}
 .sys-tag{background:linear-gradient(135deg,var(--navy),var(--navy-dark));color:#fff;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;text-align:center;}
-.sys-arrow-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0 16px;}
+.sys-arrow-col{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;}
 .sys-arrow-col svg{display:block;}
 .sys-cloud{text-align:center;margin-bottom:24px;}
 .sys-cloud-icon{font-size:36px;color:var(--gray-400);}
@@ -795,7 +797,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
                 <div style="color:var(--green-mid);font-size:22px;font-weight:700;">→</div>
                 <div class="loop-node"><div class="ln-circle lnc-green"><svg class="ui-icon" aria-hidden="true"><use href="#icon-shelf"></use></svg></div><div class="ln-label">货物<br>上架</div></div>
               </div>
-              <div style="display:flex;justify-content:flex-end;margin-bottom:20px;"><div style="color:var(--green-mid);font-size:22px;font-weight:700;">↓</div></div>
+              <div class="loop-turn-row"><div class="loop-turn-arrow">↓</div></div>
               <div style="display:flex;justify-content:space-between;align-items:center;">
                 <div class="loop-node"><div class="ln-circle lnc-blue"><svg class="ui-icon" aria-hidden="true"><use href="#icon-delivery"></use></svg></div><div class="ln-label">快递<br>配送</div></div>
                 <div style="color:var(--green-mid);font-size:22px;font-weight:700;">←</div>
@@ -934,7 +936,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
     <div style="margin-top:56px;margin-bottom:20px;" class="reveal"><div class="flow-section-title">仓配管理一体化系统架构</div></div>
     <div class="sys-diagram reveal">
       <div class="sys-cloud" style="margin-bottom:28px;"><div class="sys-cloud-icon"></div><div class="sys-cloud-label" style="font-size:13px;font-weight:700;color:var(--gray-600);">云端同步</div></div>
-      <div class="sys-grid" style="grid-template-columns:1fr 60px 1.4fr 60px 1fr;align-items:start;gap:16px;">
+      <div class="sys-grid" style="grid-template-columns:1fr 60px 1.4fr 60px 1fr;align-items:center;gap:16px;">
         <div>
           <div style="background:linear-gradient(135deg,var(--blue-mid),var(--navy));color:#fff;border-radius:12px;padding:16px 20px;text-align:center;margin-bottom:14px;"><div style="font-size:16px;margin-bottom:4px;"></div><div style="font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;">订单管理系统</div><div style="font-size:11px;opacity:.7;margin-top:2px;">Order Management</div></div>
           <div class="sys-col" style="gap:6px;">
@@ -947,7 +949,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
           </div>
           <div style="text-align:center;margin-top:12px;"><div class="sys-tag">OMS</div></div>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:60px;gap:8px;">
+        <div class="sys-arrow-col">
           <div style="color:var(--green-mid);font-size:22px;">⇄</div>
           <div style="color:var(--green-mid);font-size:22px;">⇄</div>
         </div>
@@ -958,7 +960,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
             <div style="font-size:12px;color:var(--gray-400);margin-top:4px;">智能仓配中台</div>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:60px;gap:8px;">
+        <div class="sys-arrow-col">
           <div style="color:var(--green-mid);font-size:22px;">⇄</div>
           <div style="color:var(--green-mid);font-size:22px;">⇄</div>
         </div>
