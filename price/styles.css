@@ -221,6 +221,10 @@ input {
   gap: 10px;
 }
 
+.segmented.service-options {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .segmented.compact {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -716,6 +720,7 @@ input {
   }
 
   .segmented,
+  .segmented.service-options,
   .segmented.compact,
   .segmented.weight-options,
   .grid.two,

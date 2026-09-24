@@ -37,9 +37,10 @@
             <span class="step">1</span>
             <h2>业务类型</h2>
           </div>
-          <div class="segmented" role="tablist" aria-label="业务类型">
+          <div class="segmented service-options" role="tablist" aria-label="业务类型">
             <label><input type="radio" name="service" value="fulfillment" checked><span>一件代发</span></label>
             <label><input type="radio" name="service" value="y2Exchange"><span>Y2换单</span></label>
+            <label><input type="radio" name="service" value="relocation"><span>移仓换标</span></label>
             <label><input type="radio" name="service" value="whatnot"><span>感谢信</span></label>
             <label><input type="radio" name="service" value="otherServices"><span>其他服务</span></label>
           </div>
@@ -119,6 +120,18 @@
           </div>
           <div class="wizard-actions">
             <button type="button" class="ghost-btn" data-back>返回</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="relocationServices">
+          <div class="section-head">
+            <span class="step">2</span>
+            <h2>移仓换标</h2>
+          </div>
+          <div class="addon-list" id="relocationAddonList"></div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
+            <button type="button" class="primary-btn" id="relocationResultBtn">查看报价</button>
           </div>
         </section>
 

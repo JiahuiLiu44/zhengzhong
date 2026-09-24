@@ -72,7 +72,29 @@ const pricing = {
 
 const $ = (id) => document.getElementById(id);
 const money = (value) => `$${value.toFixed(2)}`;
-const stepOrder = ["service", "productType", "dailyVolume", "weightBand", "y2Volume", "whatnotVolume", "otherServices", "result"];
+const fulfillmentAddonIds = new Set([
+  "materialSmallBox",
+  "materialMediumBox",
+  "materialLargeBox",
+  "materialBubble05",
+  "materialBubble10",
+  "polybag30",
+  "polybag50",
+  "repack",
+  "photo",
+  "video",
+  "inspect",
+  "destroy",
+  "dimensionCheck",
+  "detentionBox",
+  "detentionPallet",
+  "restockBox",
+  "returnToStock",
+  "overtime",
+  "palletize",
+  "truck",
+]);
+const stepOrder = ["service", "productType", "dailyVolume", "weightBand", "y2Volume", "relocationServices", "whatnotVolume", "otherServices", "result"];
 let activeStep = "service";
 let historyStack = [];
 
@@ -109,6 +131,7 @@ function updateProgress() {
     weightBand: 3,
     dailyVolume: 4,
     y2Volume: 2,
+    relocationServices: 2,
     whatnotVolume: 2,
     otherServices: 2,
     result: total,
@@ -121,6 +144,7 @@ function updateProgress() {
 function serviceNextStep(service) {
   if (service === "fulfillment") return "productType";
   if (service === "y2Exchange") return "y2Volume";
+  if (service === "relocation") return "relocationServices";
   if (service === "whatnot") return "whatnotVolume";
   return "otherServices";
 }
@@ -203,6 +227,7 @@ function currentLines() {
   const service = selectedRadio("service") || "fulfillment";
   if (service === "fulfillment") return fulfillmentLines();
   if (service === "y2Exchange") return y2Lines();
+  if (service === "relocation") return addonLines("relocationAddon");
   if (service === "whatnot") return whatnotLines();
   return addonLines("otherAddon");
 }
@@ -242,7 +267,7 @@ function renderFulfillmentAddonPrices(service) {
 
   const priceItems = [
     { name: "退货服务", price: "$3 / 件", detail: "退货处理服务" },
-    ...pricing.addons.map((addon) => ({
+    ...pricing.addons.filter((addon) => fulfillmentAddonIds.has(addon.id)).map((addon) => ({
       name: addon.name,
       price: addon.manual ? "单询" : `${money(addon.price)} / ${addon.unit}`,
       detail: addon.note || "可按实际需求选择",
@@ -277,6 +302,12 @@ function renderRules(service) {
       "0-1000 单为 $0.35/单，1000+ 单为 $0.30/单。",
       "如涉及特殊渠道、异常处理或额外人工操作，以人工确认为准。",
       "最终费用以实际订单数据和系统记录为准。",
+    ],
+    relocation: [
+      "移仓换标按客户勾选的服务项目计费。",
+      "FBA退货、换标、分拣、清点、贴标及物料等费用按实际数量计算。",
+      "单询项目、特殊包装和异常处理需要人工确认报价。",
+      "最终费用以实际操作数量和系统记录为准。",
     ],
     whatnot: [
       "感谢信按客户选择的单量档位计费。",
@@ -319,6 +350,7 @@ function startOver() {
 }
 
 renderAddons("otherAddonList", "otherAddon");
+renderAddons("relocationAddonList", "relocationAddon");
 document.querySelectorAll('input[name="service"]').forEach((input) => {
   input.addEventListener("change", () => goToStep(serviceNextStep(input.value)));
   input.addEventListener("click", () => goToStep(serviceNextStep(input.value)));
@@ -341,6 +373,7 @@ document.querySelectorAll('input[name="y2Volume"], input[name="whatnotVolume"]')
 });
 document.querySelectorAll("[data-back]").forEach((button) => button.addEventListener("click", goBack));
 $("otherResultBtn").addEventListener("click", () => goToStep("result"));
+$("relocationResultBtn").addEventListener("click", () => goToStep("result"));
 $("resetBtn").addEventListener("click", startOver);
 $("startOverBtn").addEventListener("click", startOver);
 $("wechatBtn").addEventListener("click", async () => {
