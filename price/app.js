@@ -181,7 +181,7 @@ function whatnotLines() {
   const volume = selectedRadio("whatnotVolume") || "unknown";
   const rate = pricing.whatnot[volume];
   const lines = [];
-  addLine(lines, "Whatnot", 1, "单", rate.price, rate.label);
+  addLine(lines, "感谢信", 1, "单", rate.price, rate.label);
   return lines;
 }
 
@@ -279,7 +279,7 @@ function renderRules(service) {
       "最终费用以实际订单数据和系统记录为准。",
     ],
     whatnot: [
-      "Whatnot 按客户选择的单量档位计费。",
+      "感谢信按客户选择的单量档位计费。",
       "0-50 单（未知）为 $0.60/单，50-100 单为 $0.50/单，100+ 单为 $0.40/单。",
       "如涉及特殊包装、拍照、检查、退货或其他人工服务，需另计增值服务费用。",
       "最终费用以实际订单数据和系统记录为准。",
