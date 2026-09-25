@@ -21,6 +21,16 @@ const pricing = {
     standard: { label: "0-1000 单", price: 0.35 },
     bulk: { label: "1000+ 单", price: 0.3 },
   },
+  relocation: {
+    volume: {
+      standard: { label: "0-10000 件", price: 0.35 },
+      bulk: { label: "10000+ 件", price: 0.3 },
+    },
+    sku: {
+      upToFive: { label: "0-5 个 SKU", price: 0 },
+      overFive: { label: "5+ 个 SKU", price: 0.05 },
+    },
+  },
   whatnot: {
     unknown: { label: "0-50 单（未知）", price: 0.6 },
     small: { label: "50-100 单", price: 0.5 },
@@ -129,7 +139,7 @@ const fulfillmentStoragePrices = [
   { label: "库龄181-365天", price: 1.5 },
   { label: "库龄 &gt; 365天", price: 2 },
 ];
-const stepOrder = ["service", "productType", "dailyVolume", "weightBand", "y2Volume", "relocationServices", "whatnotVolume", "otherServices", "result"];
+const stepOrder = ["service", "productType", "dailyVolume", "weightBand", "y2Volume", "relocationVolume", "relocationSku", "whatnotVolume", "otherServices", "result"];
 let activeStep = "service";
 let historyStack = [];
 
@@ -159,14 +169,15 @@ function goBack() {
 
 function updateProgress() {
   const service = selectedRadio("service") || "fulfillment";
-  const total = service === "fulfillment" ? 5 : 3;
+  const total = service === "fulfillment" ? 5 : service === "relocation" ? 4 : 3;
   const currentMap = {
     service: 1,
     productType: 2,
     weightBand: 3,
     dailyVolume: 4,
     y2Volume: 2,
-    relocationServices: 2,
+    relocationVolume: 2,
+    relocationSku: 3,
     whatnotVolume: 2,
     otherServices: 2,
     result: total,
@@ -179,7 +190,7 @@ function updateProgress() {
 function serviceNextStep(service) {
   if (service === "fulfillment") return "productType";
   if (service === "y2Exchange") return "y2Volume";
-  if (service === "relocation") return "relocationServices";
+  if (service === "relocation") return "relocationVolume";
   if (service === "whatnot") return "whatnotVolume";
   return "otherServices";
 }
@@ -244,6 +255,35 @@ function whatnotLines() {
   return lines;
 }
 
+function relocationLines() {
+  const volumeTier = selectedRadio("relocationVolume") || "standard";
+  const skuTier = selectedRadio("relocationSku") || "upToFive";
+  const volume = pricing.relocation.volume[volumeTier];
+  const sku = pricing.relocation.sku[skuTier];
+  const lines = [];
+
+  addLine(lines, "产品处理费", 1, "件", volume.price, volume.label);
+  addLine(lines, "分拣费", 1, "件", sku.price, sku.label);
+  lines.push(
+    { name: "散货入仓", detail: "按实际入仓方式计费", amount: 0, informational: true, display: "免费" },
+    { name: "整托入仓", detail: "按实际托盘数量计费", amount: 0, informational: true, display: "$15.00/托盘" },
+    { name: "装箱费人工", detail: "按实际装箱数量计费", amount: 0, informational: true, display: "$6.00/箱" },
+    { name: "外箱标签", detail: "按实际标签数量计费", amount: 0, informational: true, display: "$1.00/张" },
+    ...fulfillmentStoragePrices.map((item) => ({
+      name: `仓储费 ${item.label.replace("&gt;", ">")}`,
+      detail: "按实际库龄和占用体积计费",
+      amount: 0,
+      informational: true,
+      display: `${money(item.price)}/立方米/天`,
+    })),
+    { name: "物料费 亚马逊原箱", detail: "优先使用亚马逊移仓纸，如使用仓库纸箱费用另计", amount: 0, informational: true, display: "$0.00/个" },
+    { name: "物料费 小纸箱", detail: "如使用仓库纸箱，按实际数量计费", amount: 0, informational: true, display: "$3.00/个" },
+    { name: "物料费 中纸箱", detail: "如使用仓库纸箱，按实际数量计费", amount: 0, informational: true, display: "$4.00/个" },
+    { name: "物料费 大纸箱", detail: "如使用仓库纸箱，按实际数量计费", amount: 0, informational: true, display: "$5.00/个" }
+  );
+  return lines;
+}
+
 function addonLines(prefix = "otherAddon") {
   const lines = [];
   pricing.addons.forEach((addon) => {
@@ -262,7 +302,7 @@ function currentLines() {
   const service = selectedRadio("service") || "fulfillment";
   if (service === "fulfillment") return fulfillmentLines();
   if (service === "y2Exchange") return y2Lines();
-  if (service === "relocation") return addonLines("relocationAddon");
+  if (service === "relocation") return relocationLines();
   if (service === "whatnot") return whatnotLines();
   return addonLines("otherAddon");
 }
@@ -270,15 +310,18 @@ function currentLines() {
 function renderResult() {
   const service = selectedRadio("service") || "fulfillment";
   const lines = currentLines();
+  const breakdownLines = service === "relocation"
+    ? lines.filter((line) => !line.name.startsWith("仓储费") && !line.name.startsWith("物料费"))
+    : lines;
   const hasManual = lines.some((line) => line.manual);
   const total = lines.reduce((sum, line) => sum + line.amount, 0);
 
-  $("resultLabel").textContent = service === "fulfillment" ? "一件代发单价" : "报价结果";
-  $("totalPrice").textContent = service === "fulfillment" ? `${money(total)}/单` : money(total);
+  $("resultLabel").textContent = service === "fulfillment" ? "一件代发单价" : service === "relocation" ? "移仓换标单价" : "报价结果";
+  $("totalPrice").textContent = service === "fulfillment" ? `${money(total)}/单` : service === "relocation" ? `${money(total)}/件` : money(total);
   $("manualHint").textContent = hasManual ? "包含需人工确认项目" : "当前项目可自动估算";
   $("manualHint").classList.toggle("clean", !hasManual);
 
-  $("breakdownRows").innerHTML = lines.length ? lines.map((line) => `
+  $("breakdownRows").innerHTML = breakdownLines.length ? breakdownLines.map((line) => `
     <div class="line-row">
       <div>
         <strong>${line.name}</strong>
@@ -289,6 +332,7 @@ function renderResult() {
   `).join("") : `<div class="line-row"><div><strong>暂无费用</strong><small>选择服务后生成明细</small></div><div class="amount">$0.00</div></div>`;
 
   renderFulfillmentAddonPrices(service);
+  renderRelocationAddonPrices(service);
   renderRules(service);
 }
 
@@ -345,6 +389,45 @@ function setAddonCollapse(expanded) {
   $("addonToggleIcon").textContent = expanded ? "收起" : "展开";
 }
 
+function renderRelocationAddonPrices(service) {
+  const section = $("relocationAddonPriceSection");
+  section.classList.toggle("hidden", service !== "relocation");
+  if (service !== "relocation") return;
+
+  $("relocationStoragePrices").innerHTML = fulfillmentStoragePrices.map((item) => `
+    <span class="storage-price-option">
+      <strong>${item.label}</strong>
+      <small>${money(item.price)} / 立方米/天</small>
+    </span>
+  `).join("");
+
+  const materialItems = [
+    { label: "亚马逊原箱", price: 0 },
+    { label: "小纸箱", price: 3 },
+    { label: "中纸箱", price: 4 },
+    { label: "大纸箱", price: 5 },
+  ];
+  $("relocationMaterialPrices").innerHTML = `
+    <p class="material-note">优先使用亚马逊移仓纸，如使用仓库纸箱费用另计</p>
+    <section class="material-price-group">
+      <div class="segmented weight-options">
+        ${materialItems.map((item) => `
+          <span class="material-price-option">
+            <strong>${item.label}</strong>
+            <small>${money(item.price)} / 个</small>
+          </span>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function setRelocationAddonCollapse(expanded) {
+  $("relocationAddonCollapseBody").classList.toggle("hidden", !expanded);
+  $("relocationAddonToggle").setAttribute("aria-expanded", String(expanded));
+  $("relocationAddonToggleIcon").textContent = expanded ? "收起" : "展开";
+}
+
 function renderRules(service) {
   const rules = {
     fulfillment: [
@@ -360,10 +443,10 @@ function renderRules(service) {
       "最终费用以实际订单数据和系统记录为准。",
     ],
     relocation: [
-      "移仓换标按客户勾选的服务项目计费。",
-      "FBA退货、换标、分拣、清点、贴标及物料等费用按实际数量计算。",
-      "单询项目、特殊包装和异常处理需要人工确认报价。",
-      "最终费用以实际操作数量和系统记录为准。",
+      "移仓产品总数量 0-10000 件，产品处理费为 $0.35/件；10000+ 件为 $0.30/件。",
+      "SKU 总数 0-5 个免分拣费；5+ 个 SKU，分拣费为 $0.05/件。",
+      "散货入仓免费；整托入仓 $15/托盘；装箱费人工 $6/箱；外箱标签 $1/张。",
+      "页面显示的是单价，最终费用以实际操作数量和系统记录为准。",
     ],
     whatnot: [
       "感谢信按客户选择的单量档位计费。",
@@ -406,7 +489,6 @@ function startOver() {
 }
 
 renderAddons("otherAddonList", "otherAddon");
-renderAddons("relocationAddonList", "relocationAddon");
 document.querySelectorAll('input[name="service"]').forEach((input) => {
   input.addEventListener("change", () => goToStep(serviceNextStep(input.value)));
   input.addEventListener("click", () => goToStep(serviceNextStep(input.value)));
@@ -427,9 +509,16 @@ document.querySelectorAll('input[name="y2Volume"], input[name="whatnotVolume"]')
   input.addEventListener("change", () => goToStep("result"));
   input.addEventListener("click", () => goToStep("result"));
 });
+document.querySelectorAll('input[name="relocationVolume"]').forEach((input) => {
+  input.addEventListener("change", () => goToStep("relocationSku"));
+  input.addEventListener("click", () => goToStep("relocationSku"));
+});
+document.querySelectorAll('input[name="relocationSku"]').forEach((input) => {
+  input.addEventListener("change", () => goToStep("result"));
+  input.addEventListener("click", () => goToStep("result"));
+});
 document.querySelectorAll("[data-back]").forEach((button) => button.addEventListener("click", goBack));
 $("otherResultBtn").addEventListener("click", () => goToStep("result"));
-$("relocationResultBtn").addEventListener("click", () => goToStep("result"));
 $("resetBtn").addEventListener("click", startOver);
 $("startOverBtn").addEventListener("click", startOver);
 $("wechatBtn").addEventListener("click", async () => {
@@ -447,6 +536,10 @@ $("wechatBtn").addEventListener("click", async () => {
 $("addonToggle").addEventListener("click", () => {
   const expanded = $("addonToggle").getAttribute("aria-expanded") === "true";
   setAddonCollapse(!expanded);
+});
+$("relocationAddonToggle").addEventListener("click", () => {
+  const expanded = $("relocationAddonToggle").getAttribute("aria-expanded") === "true";
+  setRelocationAddonCollapse(!expanded);
 });
 document.addEventListener("input", () => {
   if (activeStep === "result") renderResult();

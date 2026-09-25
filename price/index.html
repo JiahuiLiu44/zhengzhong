@@ -123,15 +123,31 @@
           </div>
         </section>
 
-        <section class="section-block wizard-step hidden" data-step="relocationServices">
+        <section class="section-block wizard-step hidden" data-step="relocationVolume">
           <div class="section-head">
             <span class="step">2</span>
-            <h2>移仓换标</h2>
+            <h2>移仓产品总数量</h2>
           </div>
-          <div class="addon-list" id="relocationAddonList"></div>
+          <div class="segmented compact" role="radiogroup" aria-label="移仓产品总数量">
+            <label><input type="radio" name="relocationVolume" value="standard" checked><span>0-10000</span></label>
+            <label><input type="radio" name="relocationVolume" value="bulk"><span>10000+</span></label>
+          </div>
           <div class="wizard-actions">
             <button type="button" class="ghost-btn" data-back>返回</button>
-            <button type="button" class="primary-btn" id="relocationResultBtn">查看报价</button>
+          </div>
+        </section>
+
+        <section class="section-block wizard-step hidden" data-step="relocationSku">
+          <div class="section-head">
+            <span class="step">3</span>
+            <h2>SKU总数</h2>
+          </div>
+          <div class="segmented compact" role="radiogroup" aria-label="SKU总数">
+            <label><input type="radio" name="relocationSku" value="upToFive" checked><span>0-5</span></label>
+            <label><input type="radio" name="relocationSku" value="overFive"><span>5+</span></label>
+          </div>
+          <div class="wizard-actions">
+            <button type="button" class="ghost-btn" data-back>返回</button>
           </div>
         </section>
 
@@ -177,14 +193,31 @@
               </div>
               </div>
               <div class="inline-selector">
-                <h3>物料费用</h3>
-                <div class="material-price-groups" id="fulfillmentMaterialPrices"></div>
-              </div>
-              <div class="inline-selector">
                 <h3>仓储费用</h3>
                 <div class="segmented weight-options" id="fulfillmentStoragePrices"></div>
               </div>
+              <div class="inline-selector">
+                <h3>物料费用</h3>
+                <div class="material-price-groups" id="fulfillmentMaterialPrices"></div>
+              </div>
               <div class="addon-price-grid" id="fulfillmentAddonPrices"></div>
+            </div>
+          </section>
+
+          <section class="breakdown hidden addon-collapsible" id="relocationAddonPriceSection">
+            <button type="button" class="collapse-trigger" id="relocationAddonToggle" aria-expanded="false">
+              <span>增值服务价格</span>
+              <strong id="relocationAddonToggleIcon">展开</strong>
+            </button>
+            <div class="addon-collapse-body hidden" id="relocationAddonCollapseBody">
+              <div class="inline-selector">
+                <h3>仓储费用</h3>
+                <div class="segmented weight-options" id="relocationStoragePrices"></div>
+              </div>
+              <div class="inline-selector">
+                <h3>物料费用</h3>
+                <div class="material-price-groups" id="relocationMaterialPrices"></div>
+              </div>
             </div>
           </section>
 
