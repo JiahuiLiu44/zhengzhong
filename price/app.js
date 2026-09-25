@@ -94,6 +94,41 @@ const fulfillmentAddonIds = new Set([
   "palletize",
   "truck",
 ]);
+const fulfillmentMaterialGroups = [
+  {
+    label: "纸箱",
+    items: [
+      { id: "materialSmallBox", label: "小纸箱" },
+      { id: "materialMediumBox", label: "中纸箱" },
+      { id: "materialLargeBox", label: "大纸箱" },
+    ],
+  },
+  {
+    label: "气泡袋",
+    items: [
+      { id: "materialBubble05", label: "气泡袋" },
+      { id: "materialBubble10", label: "大气泡袋" },
+    ],
+  },
+  {
+    label: "普通邮寄胶袋",
+    items: [
+      { id: "polybag30", label: "普通邮寄胶袋 30*40" },
+      { id: "polybag50", label: "普通邮寄胶袋 50*50" },
+    ],
+  },
+];
+const fulfillmentMaterialIds = new Set(
+  fulfillmentMaterialGroups.flatMap((group) => group.items.map((item) => item.id))
+);
+const fulfillmentStoragePrices = [
+  { label: "库龄0-30天（免租）", price: 0 },
+  { label: "库龄31-90天", price: 0.6 },
+  { label: "库龄91-120天", price: 0.8 },
+  { label: "库龄121-180天", price: 1 },
+  { label: "库龄181-365天", price: 1.5 },
+  { label: "库龄 &gt; 365天", price: 2 },
+];
 const stepOrder = ["service", "productType", "dailyVolume", "weightBand", "y2Volume", "relocationServices", "whatnotVolume", "otherServices", "result"];
 let activeStep = "service";
 let historyStack = [];
@@ -260,6 +295,8 @@ function renderResult() {
 function renderFulfillmentAddonPrices(service) {
   const section = $("fulfillmentAddonPriceSection");
   const contactSection = $("fulfillmentContactSection");
+  const materialContainer = $("fulfillmentMaterialPrices");
+  const storageContainer = $("fulfillmentStoragePrices");
   const container = $("fulfillmentAddonPrices");
   section.classList.toggle("hidden", service !== "fulfillment");
   contactSection.classList.toggle("hidden", service !== "fulfillment");
@@ -267,12 +304,31 @@ function renderFulfillmentAddonPrices(service) {
 
   const priceItems = [
     { name: "退货服务", price: "$3 / 件", detail: "退货处理服务" },
-    ...pricing.addons.filter((addon) => fulfillmentAddonIds.has(addon.id)).map((addon) => ({
+    ...pricing.addons.filter((addon) => fulfillmentAddonIds.has(addon.id) && !fulfillmentMaterialIds.has(addon.id)).map((addon) => ({
       name: addon.name,
       price: addon.manual ? "单询" : `${money(addon.price)} / ${addon.unit}`,
       detail: addon.note || "可按实际需求选择",
     })),
   ];
+
+  materialContainer.innerHTML = fulfillmentMaterialGroups.map((group) => `
+    <section class="material-price-group">
+      <h4>${group.label}</h4>
+      <div class="segmented ${group.items.length === 2 ? "compact" : "weight-options"}">
+        ${group.items.map((item) => {
+          const addon = pricing.addons.find((entry) => entry.id === item.id);
+          return `<span class="material-price-option"><strong>${item.label}</strong><small>${money(addon.price)} / ${addon.unit}</small></span>`;
+        }).join("")}
+      </div>
+    </section>
+  `).join("");
+
+  storageContainer.innerHTML = fulfillmentStoragePrices.map((item) => `
+    <span class="storage-price-option">
+      <strong>${item.label}</strong>
+      <small>${money(item.price)} / 立方米/天</small>
+    </span>
+  `).join("");
 
   container.innerHTML = priceItems.map((item) => `
     <div class="addon-price-card">
