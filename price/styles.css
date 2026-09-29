@@ -139,7 +139,7 @@ input {
 }
 
 .progress {
-  width: min(100%, 680px);
+  width: 100%;
   margin: 0 auto;
   background: #fff;
   border: 1px solid var(--line);
