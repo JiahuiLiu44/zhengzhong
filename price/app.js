@@ -185,6 +185,7 @@ function updateProgress() {
   const current = currentMap[activeStep] || 1;
   $("progressText").textContent = `第 ${current} 步 / 共 ${total} 步`;
   $("progressBar").style.width = `${Math.min(100, Math.round((current / total) * 100))}%`;
+  $("resultTopActions").classList.toggle("show-actions", activeStep === "result");
 }
 
 function serviceNextStep(service) {

@@ -139,6 +139,8 @@ input {
 }
 
 .progress {
+  width: min(100%, 680px);
+  margin: 0 auto;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -146,12 +148,53 @@ input {
   box-shadow: 0 1px 0 rgba(20, 32, 51, 0.03);
 }
 
-.progress span {
-  display: block;
-  margin-bottom: 10px;
+.progress-head {
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) minmax(180px, 300px) minmax(96px, 1fr);
+  align-items: center;
+  min-height: 36px;
+  gap: 14px;
+}
+
+.progress-status {
+  display: grid;
+  align-self: stretch;
+  align-content: space-between;
+  gap: 0;
+  min-width: 0;
+  text-align: center;
+}
+
+#progressText {
   color: var(--muted);
   font-size: 13px;
   font-weight: 750;
+  white-space: nowrap;
+}
+
+.result-top-action {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.progress-head.show-actions .result-top-action {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.progress-head .ghost-btn,
+.progress-head .primary-btn {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.progress-head .ghost-btn {
+  justify-self: start;
+}
+
+.progress-head .primary-btn {
+  justify-self: end;
 }
 
 .progress-track {
@@ -758,6 +801,22 @@ input {
 
   .workspace {
     padding: 12px;
+  }
+
+  .progress-head {
+    grid-template-columns: auto minmax(76px, 1fr) auto;
+    gap: 7px;
+  }
+
+  #progressText {
+    font-size: 12px;
+  }
+
+  .progress-head .ghost-btn,
+  .progress-head .primary-btn {
+    min-height: 32px;
+    padding: 0 9px;
+    font-size: 11px;
   }
 
   .segmented,

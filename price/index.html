@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>郑中海外仓报价查询器</title>
-  <link rel="stylesheet" href="styles.css?v=20260925-1">
+  <link rel="stylesheet" href="styles.css?v=20260928-4">
 </head>
 <body>
   <main class="app-shell">
@@ -28,8 +28,14 @@
     <section class="workspace wizard-workspace">
       <form class="quote-panel wizard-panel" id="quoteForm">
         <div class="progress">
-          <span id="progressText">第 1 步 / 共 3 步</span>
-          <div class="progress-track"><div id="progressBar"></div></div>
+          <div class="progress-head" id="resultTopActions">
+            <button type="button" class="ghost-btn result-top-action" data-back>返回修改</button>
+            <div class="progress-status">
+              <span id="progressText">第 1 步 / 共 3 步</span>
+              <div class="progress-track"><div id="progressBar"></div></div>
+            </div>
+            <button type="button" class="primary-btn result-top-action" id="startOverBtn">重新开始</button>
+          </div>
         </div>
 
         <section class="section-block wizard-step" data-step="service">
@@ -251,16 +257,12 @@
               <li id="ruleTimeLine">订单处理时效为 24 小时（工作日）；特殊渠道、异常处理和单询项目以人工确认为准。</li>
             </ul>
           </section>
-          <div class="wizard-actions">
-            <button type="button" class="ghost-btn" data-back>返回修改</button>
-            <button type="button" class="primary-btn" id="startOverBtn">重新开始</button>
-          </div>
         </section>
       </form>
     </section>
   </main>
 
   <script src="pricing-policy.js"></script>
-  <script src="app.js?v=20260925-1"></script>
+  <script src="app.js?v=20260928-4"></script>
 </body>
 </html>
