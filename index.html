@@ -484,7 +484,11 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
   .hero-logo-wrap,.hero-brand,.hero-tagline,.hero-desc,.hero-stats{animation:none;}
 }
 </style>
-</head>
+<!-- MAP-PREVIEW-SUPPORT-START --><style>
+.warehouse-map-v6-preview{width:100%;aspect-ratio:2.6;min-height:400px;background:#f8fafc}
+.warehouse-map-v6-preview iframe{display:block;width:100%;height:100%;border:0}
+@media(max-width:650px){.warehouse-map-v6-preview{aspect-ratio:auto;min-height:0;height:300px}}
+</style><!-- MAP-PREVIEW-SUPPORT-END --></head>
 <body>
 
 <svg class="icon-sprite" aria-hidden="true">
@@ -602,7 +606,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
   <section class="section alt">
     <div class="wrap">
       <div class="reveal"><div class="sec-eye">Our Network</div><h2 class="sec-title">全美仓储网络布局</h2><p class="sec-sub">东、中、西部4仓覆盖全美，多仓联动协同，就近发货，全面提升配送效率</p></div>
-      <div class="home-map-wrap reveal"><img src="assets/contiguous-us-warehouse-points.png" alt="郑中海外仓全美仓储网络地图"></div>
+      <div id="home-map-preview" class="home-map-wrap reveal warehouse-map-v6-preview"><iframe src="warehouse-map-20261009.html" title="郑中海外仓全美仓储网络地图" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>
       <div style="text-align:center;margin-top:28px;" class="reveal"><a class="btn-gold" onclick="showPage('network')">查看仓储详情 →</a></div>
     </div>
   </section>
@@ -652,7 +656,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
   <section class="section alt">
     <div class="wrap">
       <div class="reveal"><div class="sec-eye">Warehouse Map</div><h2 class="sec-title">全美仓储地图</h2></div>
-      <div class="map-embed-box reveal"><img src="assets/contiguous-us-warehouse-points.png" alt="郑中海外仓全美仓储网络"></div>
+      <div id="network-map-preview" class="map-embed-box reveal warehouse-map-v6-preview"><iframe src="warehouse-map-20261009.html" title="郑中海外仓全美仓储网络地图" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>
     </div>
   </section>
   <section class="section">
