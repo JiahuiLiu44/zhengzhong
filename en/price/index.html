@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Warehouse Quote Calculator | Zhengzhong Fulfillment</title>
+  <meta name="description" content="Estimate USD handling rates for ecommerce order fulfillment, Y2 shipping label replacement, inventory transfer and relabeling, and additional warehouse services.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Warehouse Quote Calculator | Zhengzhong Fulfillment">
+  <meta property="og:description" content="Estimate warehouse handling costs in USD and review the full service rates and conditions.">
+  <meta property="og:url" content="https://zhengzhong.tech/en/price/">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="styles.css?v=20261025-1">
+
+<link rel="canonical" href="https://zhengzhong.tech/en/price/">
+<link rel="alternate" hreflang="zh-CN" href="https://zhengzhong.tech/price/">
+<link rel="alternate" hreflang="en" href="https://zhengzhong.tech/en/price/">
+<link rel="alternate" hreflang="en-US" href="https://zhengzhong.tech/en/price/">
+<link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/price/">
+<link rel="stylesheet" href="/assets/language-switch.css">
+</head>
+<body>
+  <a class="skip-link" href="#quoteForm">Skip to quote calculator</a>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="Zhengzhong Fulfillment home">
+        <img src="../../price/assets/logo.png" alt="Zhengzhong Fulfillment logo" width="46" height="46">
+        <div><div class="brand-name">Zhengzhong Fulfillment</div><div class="brand-sub">Warehouse Quote Calculator</div></div>
+      </a>
+      <div class="topbar-actions">
+        <a class="home-link" href="../">← Home</a>
+        <nav class="language-switch zz-language-switch " aria-label="Language"><a class="zz-language-option" href="./" lang="en-US" hreflang="en-US" data-language-link="en" aria-label="English (United States)" aria-current="page"><img class="zz-flag" src="/assets/flags/us.svg" alt="" width="24" height="16"><span class="zz-language-text">EN</span></a><a class="zz-language-option" href="../../price/" lang="zh-CN" hreflang="zh-CN" data-language-link="zh" aria-label="Chinese (China)"><img class="zz-flag" src="/assets/flags/cn.svg" alt="" width="24" height="16"><span class="zz-language-text">中文</span></a></nav>
+        <div class="rate-badge"><strong>USD estimate</strong></div>
+      </div>
+    </header>
+    <section class="workspace wizard-workspace">
+      <div class="page-intro"><h1>Estimate your handling costs</h1><p>Choose your service to see the rate, additional fees, and the details behind your estimate. All prices are in USD.</p></div>
+      <form class="quote-panel wizard-panel" id="quoteForm" novalidate>
+        <div class="progress">
+          <div class="progress-head" id="resultTopActions">
+            <button type="button" class="ghost-btn result-top-action" data-back>Back</button>
+            <div class="progress-status"><span id="progressText" aria-live="polite">Step 1 of 5</span><div class="progress-track" aria-hidden="true"><div id="progressBar"></div></div></div>
+            <button type="button" class="primary-btn result-top-action" id="startOverBtn">Start over</button>
+          </div>
+        </div>
+        <section class="section-block wizard-step" data-step="service" aria-labelledby="serviceHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">1</span><h2 id="serviceHeading" tabindex="-1">Which service do you need?</h2></div>
+          <p class="step-help">Select an option to continue.</p>
+          <div class="segmented service-options" role="group" aria-label="Service type">
+            <button type="button" class="option" data-field="service" data-value="fulfillment" aria-pressed="false">Ecommerce Order Fulfillment</button>
+            <button type="button" class="option" data-field="service" data-value="y2Exchange" aria-pressed="false">Y2 Shipping Label Replacement</button>
+            <button type="button" class="option" data-field="service" data-value="relocation" aria-pressed="false">Inventory Transfer &amp; Relabeling</button>
+            <button type="button" class="option" data-field="service" data-value="otherServices" aria-pressed="false">Other Services</button>
+          </div>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="productType" aria-labelledby="productHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">2</span><h2 id="productHeading" tabindex="-1">What handling does your product need?</h2></div>
+          <p class="step-help">Special handling is accepted case by case. Selecting it does not confirm acceptance of the goods.</p>
+          <div class="segmented compact" role="group" aria-label="Goods handling type">
+            <button type="button" class="option" data-field="productType" data-value="general" aria-pressed="false">Standard Goods</button>
+            <button type="button" class="option" data-field="productType" data-value="sensitive" aria-pressed="false">Special Handling<small>+$0.10/order · subject to acceptance</small></button>
+          </div>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="weightBand" aria-labelledby="weightHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">3</span><h2 id="weightHeading" tabindex="-1">What is the packed parcel weight?</h2></div>
+          <p class="step-help">Use the total packed weight for one order. Each upper limit is included in that band. For bulky parcels, see the dimensional-weight reference in the result.</p>
+          <div class="segmented weight-options" role="group" aria-label="Packed parcel weight">
+            <button type="button" class="option" data-field="weightBand" data-value="0-1" aria-pressed="false">0–1 kg</button>
+            <button type="button" class="option" data-field="weightBand" data-value="1-2" aria-pressed="false">Over 1 to 2 kg</button>
+            <button type="button" class="option" data-field="weightBand" data-value="2-5" aria-pressed="false">Over 2 to 5 kg</button>
+            <button type="button" class="option" data-field="weightBand" data-value="5-10" aria-pressed="false">Over 5 to 10 kg</button>
+            <button type="button" class="option" data-field="weightBand" data-value="10-15" aria-pressed="false">Over 10 to 15 kg</button>
+            <button type="button" class="option" data-field="weightBand" data-value="15-22" aria-pressed="false">Over 15 to 22 kg</button>
+          </div>
+          <p class="step-help">Over 22 kg? <a href="mailto:shiyi@zhengzhong.tech?subject=Warehouse%20quote%20for%20a%20parcel%20over%2022%20kg">Email us for a quote.</a></p>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="dailyVolume" aria-labelledby="dailyHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">4</span><h2 id="dailyHeading" tabindex="-1">How many orders do you ship per day?</h2></div>
+          <div class="segmented volume-options" role="group" aria-label="Daily order volume">
+            <button type="button" class="option" data-field="dailyVolume" data-value="trial" aria-pressed="false">0–49 orders<small>Product-testing volume</small></button>
+            <button type="button" class="option" data-field="dailyVolume" data-value="small" aria-pressed="false">50–99 orders</button>
+            <button type="button" class="option" data-field="dailyVolume" data-value="medium" aria-pressed="false">100–499 orders</button>
+            <button type="button" class="option" data-field="dailyVolume" data-value="large" aria-pressed="false">500+ orders</button>
+          </div>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="y2Volume" aria-labelledby="y2Heading">
+          <div class="section-head"><span class="step" aria-hidden="true">2</span><h2 id="y2Heading" tabindex="-1">How many Y2 orders need new shipping labels?</h2></div>
+          <div class="segmented compact" role="group" aria-label="Y2 order volume">
+            <button type="button" class="option" data-field="y2Volume" data-value="standard" aria-pressed="false">0–999 orders</button>
+            <button type="button" class="option" data-field="y2Volume" data-value="bulk" aria-pressed="false">1,000+ orders</button>
+          </div>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="relocationVolume" aria-labelledby="transferHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">2</span><h2 id="transferHeading" tabindex="-1">How many items are you transferring?</h2></div>
+          <div class="segmented compact" role="group" aria-label="Total transfer item count">
+            <button type="button" class="option" data-field="relocationVolume" data-value="standard" aria-pressed="false">0–9,999 items</button>
+            <button type="button" class="option" data-field="relocationVolume" data-value="bulk" aria-pressed="false">10,000+ items</button>
+          </div>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="relocationSku" aria-labelledby="skuHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">3</span><h2 id="skuHeading" tabindex="-1">How many SKUs are in the transfer?</h2></div>
+          <div class="segmented compact" role="group" aria-label="Total transfer SKU count">
+            <button type="button" class="option" data-field="relocationSku" data-value="upToFive" aria-pressed="false">Up to 5 SKUs<small>No sorting fee</small></button>
+            <button type="button" class="option" data-field="relocationSku" data-value="overFive" aria-pressed="false">More than 5 SKUs<small>+$0.05/item for sorting</small></button>
+          </div>
+        </section>
+        <section class="section-block wizard-step hidden" data-step="otherServices" aria-labelledby="otherHeading">
+          <div class="section-head"><span class="step" aria-hidden="true">2</span><h2 id="otherHeading" tabindex="-1">Choose your additional services</h2></div>
+          <p class="step-help">Select the services you need and enter a positive quantity for each. Holding fees use billable carton-days or pallet-days. Freight is quoted separately.</p>
+          <button type="button" class="primary-btn" id="otherResultBtn">View estimate</button>
+          <p id="otherError" class="form-error hidden" role="alert"></p>
+          <div class="addon-list" id="otherAddonList"></div>
+        </section>
+        <section class="wizard-step hidden result-panel" data-step="result" aria-labelledby="resultLabel">
+          <div class="result-card"><div class="result-top"><h2 id="resultLabel" tabindex="-1">Your estimate</h2></div><div class="total" id="totalPrice"></div><div class="hint" id="manualHint"></div><p class="result-disclaimer">USD · Postage and applicable additional services are separate. Confirm the final quote before shipment.</p></div>
+          <section class="breakdown"><h2>Quote breakdown</h2><div id="breakdownRows"></div></section>
+          <section class="breakdown hidden addon-collapsible" id="fulfillmentAddonPriceSection">
+            <button type="button" class="collapse-trigger" id="addonToggle" aria-expanded="false" aria-controls="addonCollapseBody"><span>Additional service rates</span><strong id="addonToggleIcon">Show</strong></button>
+            <div class="addon-collapse-body hidden" id="addonCollapseBody">
+              <div class="inline-selector"><h3>Receiving, Counting &amp; Putaway</h3><p class="step-help">Charged per inbound carton. This is separate from the per-order handling rate.</p><div class="segmented weight-options" role="group" aria-label="SKUs per inbound carton">
+                <button type="button" class="option sku-option" data-field="skuCountTier" data-value="one" aria-pressed="true">1 SKU per carton<small>$0.00/carton</small></button>
+                <button type="button" class="option sku-option" data-field="skuCountTier" data-value="twoToFive" aria-pressed="false">2–5 SKUs per carton<small>$1.00/carton</small></button>
+                <button type="button" class="option sku-option" data-field="skuCountTier" data-value="overFive" aria-pressed="false">More than 5 SKUs per carton<small>$2.00/carton</small></button>
+              </div></div>
+              <div class="inline-selector"><h3>Storage</h3><p class="step-help">Rates per cubic meter per day, based on inventory age and occupied volume.</p><div class="segmented weight-options" id="fulfillmentStoragePrices"></div></div>
+              <div class="inline-selector"><h3>Packing Materials</h3><div class="material-price-groups" id="fulfillmentMaterialPrices"></div></div>
+              <div class="addon-price-grid" id="fulfillmentAddonPrices"></div>
+            </div>
+          </section>
+          <section class="breakdown hidden addon-collapsible" id="relocationAddonPriceSection">
+            <button type="button" class="collapse-trigger" id="relocationAddonToggle" aria-expanded="false" aria-controls="relocationAddonCollapseBody"><span>Storage &amp; packing material rates</span><strong id="relocationAddonToggleIcon">Show</strong></button>
+            <div class="addon-collapse-body hidden" id="relocationAddonCollapseBody">
+              <div class="inline-selector"><h3>Storage</h3><p class="step-help">Rates per cubic meter per day, based on inventory age and occupied volume.</p><div class="segmented weight-options" id="relocationStoragePrices"></div></div>
+              <div class="inline-selector"><h3>Packing Materials</h3><div class="material-price-groups" id="relocationMaterialPrices"></div></div>
+            </div>
+          </section>
+          <section class="contact-card" id="contactSection">
+            <div><h2>Confirm your quote</h2><p>Send us your estimate and shipment details to confirm the services and final charges.</p><a class="email-address" href="mailto:shiyi@zhengzhong.tech">shiyi@zhengzhong.tech</a></div>
+            <div class="quote-contact-actions"><a class="primary-btn email-quote" id="emailQuoteLink" href="mailto:shiyi@zhengzhong.tech">Request a quote by email</a><button type="button" class="ghost-btn" id="copyQuoteBtn">Copy estimate</button></div>
+            <button type="button" id="wechatBtn"><span>WeChat: zhengzhonghwc</span><strong id="wechatBtnText">Copy WeChat ID</strong></button>
+            <div class="qr-grid"><figure class="qr-card"><img src="../../price/assets/wecom_qr.jpg" alt="Zhengzhong Fulfillment WeCom contact QR code" width="180" height="180" loading="lazy"><figcaption>WeCom</figcaption></figure><figure class="qr-card"><img src="../../price/assets/wechat_qr.jpg" alt="Zhengzhong Fulfillment WeChat contact QR code" width="180" height="180" loading="lazy"><figcaption>WeChat</figcaption></figure></div>
+            <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+            <div class="copy-fallback hidden" id="copyFallback"><label for="copyFallbackText" id="copyFallbackLabel">Select and copy the text below</label><textarea id="copyFallbackText" readonly rows="5"></textarea></div>
+          </section>
+          <section class="notes"><h2>Service details &amp; pricing rules</h2><ul id="serviceRules"></ul></section>
+        </section>
+      </form>
+      <noscript><p class="noscript-note">Enable JavaScript to use this calculator, or <a href="mailto:shiyi@zhengzhong.tech">email shiyi@zhengzhong.tech</a> for a quote.</p></noscript>
+    </section>
+  </main>
+  <script src="pricing-core.js?v=20261025-1"></script>
+  <script src="app.js?v=20261025-1"></script>
+</body>
+</html>

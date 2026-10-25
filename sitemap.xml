@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://zhengzhong.tech/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengzhong.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengzhong.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://zhengzhong.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/"/>
+  </url>
+  <url><loc>https://zhengzhong.tech/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengzhong.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengzhong.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://zhengzhong.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/"/>
+  </url>
+  <url><loc>https://zhengzhong.tech/price/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengzhong.tech/price/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengzhong.tech/en/price/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://zhengzhong.tech/en/price/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/price/"/>
+  </url>
+  <url><loc>https://zhengzhong.tech/en/price/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengzhong.tech/price/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengzhong.tech/en/price/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://zhengzhong.tech/en/price/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/price/"/>
+  </url>
+</urlset>

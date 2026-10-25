@@ -1,0 +1,375 @@
+{
+  "version": 1,
+  "three": "180",
+  "assets": [
+    {
+      "id": "aircraft",
+      "bytes": 8666420,
+      "instances": 5,
+      "meshes": 127,
+      "triangles": 91084,
+      "animations": [
+        {
+          "name": "cargo-door-open",
+          "tracks": 13,
+          "unbound": 0,
+          "motion": true
+        },
+        {
+          "name": "cargo-door-close",
+          "tracks": 13,
+          "unbound": 0,
+          "motion": true
+        },
+        {
+          "name": "gear-retract",
+          "tracks": 14,
+          "unbound": 0,
+          "motion": true
+        },
+        {
+          "name": "gear-extend",
+          "tracks": 14,
+          "unbound": 0,
+          "motion": true
+        }
+      ],
+      "boundsError": 8.925795480507759e-8,
+      "up": "+Y",
+      "bounds": {
+        "min": [
+          -7,
+          0.0020000005960464223,
+          -6.629500001519918
+        ],
+        "max": [
+          7,
+          3.914560079574585,
+          6.629499912261963
+        ]
+      },
+      "sources": [
+        {
+          "source": "zhengzhong-aircraft/src/createAircraftModel.ts",
+          "sha256": "344f8345df884051c2d274ff9f995abd88876edb518e031e7cc0ef82b21f814f"
+        },
+        {
+          "source": "zhengzhong-aircraft/src/brandArtwork.ts",
+          "sha256": "1e4402bc9200bf99f7b94e7dd9f0c4c41c11e87955d38937ddb5570139fedeca"
+        }
+      ],
+      "sha256": "b1aefeca67f5a601de58db9952f920afd7d8e994a02c0bcd8609a3798656418e"
+    },
+    {
+      "id": "van",
+      "bytes": 8806472,
+      "instances": 9,
+      "meshes": 88,
+      "triangles": 89286,
+      "animations": [
+        {
+          "name": "Left_Cab_Door_Open",
+          "tracks": 9,
+          "unbound": 0,
+          "motion": true
+        },
+        {
+          "name": "Right_Cab_Door_Open",
+          "tracks": 9,
+          "unbound": 0,
+          "motion": true
+        },
+        {
+          "name": "Rear_Shutter_Open",
+          "tracks": 36,
+          "unbound": 0,
+          "motion": true
+        }
+      ],
+      "boundsError": 1.5599332332292903e-7,
+      "up": "+Y",
+      "bounds": {
+        "min": [
+          -3.677999973297119,
+          -3.5762786065873797e-9,
+          -1.3949999809265137
+        ],
+        "max": [
+          3.8350000381469727,
+          3.120000123977661,
+          1.3949999809265137
+        ]
+      },
+      "sources": [
+        {
+          "source": "zhengzhong-van/src/createVanModel.ts",
+          "sha256": "48891826a23203cd115032cdf01649b1ca01e0d00d1c8a81cb0728be4303c1da"
+        },
+        {
+          "source": "zhengzhong-van/src/brandArtwork.ts",
+          "sha256": "409aafba39f5c78635a4989615efa81a272b982b9ea0f6e405cec20f7031ae41"
+        },
+        {
+          "source": "zhengzhong-van/src/doorMechanisms.ts",
+          "sha256": "1c161c05774c7116cc322adaa683caee3e0c426f2d300c25a909141ef20f87cc"
+        }
+      ],
+      "sha256": "5bee88d6cc75dbc1cc070f303df462d3f343b6d53f12495ae2b73d418ca599ac"
+    },
+    {
+      "id": "truck",
+      "bytes": 9110076,
+      "instances": 102,
+      "meshes": 145,
+      "triangles": 165254,
+      "animations": [
+        {
+          "name": "container-lower-and-lock",
+          "tracks": 10,
+          "unbound": 0,
+          "motion": true
+        }
+      ],
+      "boundsError": 1.7166568352971861e-7,
+      "up": "+Y",
+      "bounds": {
+        "min": [
+          -10.894640038146973,
+          0.013949985504150386,
+          -1.5399999469518661
+        ],
+        "max": [
+          7.621500002244183,
+          4.199999809265137,
+          1.5399999469518661
+        ]
+      },
+      "sources": [
+        {
+          "source": "zhengzhong-truck/src/createContainerTruckModel.ts",
+          "sha256": "5bd6b1a57dd1da49ed8fa37eb0318c534906f7aba8aee72cb9db6457abf44bdb"
+        },
+        {
+          "source": "zhengzhong-truck/src/createTruckModel.ts",
+          "sha256": "cef5142d459a569341033960ba7a483aae35773dc47e9a20b3fcc8551257502b"
+        }
+      ],
+      "sha256": "84e17cc1e9901a0474fe6856241484c4f17dce9380590de25ae201637c0f8241"
+    },
+    {
+      "id": "crane",
+      "bytes": 202156,
+      "instances": 9,
+      "meshes": 55,
+      "triangles": 5100,
+      "animations": [],
+      "boundsError": 0.0000011907009147053028,
+      "up": "+Y",
+      "bounds": {
+        "min": [
+          -8.225000381469727,
+          8.940696516468449e-10,
+          -6
+        ],
+        "max": [
+          17.825000762939453,
+          20.010000228881836,
+          6
+        ]
+      },
+      "sources": [
+        {
+          "source": "zhengzhong-quay-crane/src/createQuayCraneModel.ts",
+          "sha256": "cbfdcb9da928791a8aa91f3736c7ad6dfbb26ec07dc7b65e9ad257c6756f5139"
+        }
+      ],
+      "sha256": "2aa97e11a078c0a2f9fc32b4da2092594115d37959cd94d0b2dbc13328e98ced"
+    }
+  ],
+  "brandReplacements": {
+    "van": [
+      "cargo__pivot-brand-left",
+      "cargo__pivot-brand-right",
+      "front-fascia__pivot-brand-front",
+      "rear-slat-02-brand-rear",
+      "rear-slat-03-brand-rear",
+      "rear-slat-04-brand-rear",
+      "rear-slat-05-brand-rear",
+      "rear-slat-06-brand-rear",
+      "rear-slat-07-brand-rear",
+      "rear-slat-08-brand-rear",
+      "rear-slat-09-brand-rear",
+      "rear-slat-10-brand-rear"
+    ],
+    "truck": [
+      "zhengzhong-cab-1",
+      "zhengzhong-cab--1",
+      "zhengzhong-chassis-logo",
+      "zhengzhong-chassis-logo",
+      "zhengzhong-container-logo",
+      "zhengzhong-container-logo"
+    ]
+  },
+  "brand": "Zhengzhong Fulfillment",
+  "artworkAdapter": {
+    "source": "animation-workspace/english-artwork.ts",
+    "sha256": "ac2f963890da695b2016d26c20b64d9d6f5c1d1363c6c773ffef47d25b8af1ab"
+  },
+  "artwork": [
+    {
+      "file": "artwork/aircraft-lockup.png",
+      "bytes": 211043,
+      "sha256": "555baae261d3e7ea1e27039278f0705d38a1b5213eaf5e718c140f252752046b"
+    },
+    {
+      "file": "artwork/trademark.png",
+      "bytes": 1177524,
+      "sha256": "cb4c5767c028b08a1a2c238bdc0d121091ab429b0301921e6960091e054075db"
+    },
+    {
+      "file": "artwork/truck-cab.png",
+      "bytes": 304195,
+      "sha256": "9d64e6b2a96cb71d75611397d721609f0ce57f9b5c291bd90b838bce6ae77fb2"
+    },
+    {
+      "file": "artwork/truck-rear.png",
+      "bytes": 304195,
+      "sha256": "9d64e6b2a96cb71d75611397d721609f0ce57f9b5c291bd90b838bce6ae77fb2"
+    },
+    {
+      "file": "artwork/truck-side.png",
+      "bytes": 333476,
+      "sha256": "d1dee3e42655b4943cf104a458a31a76806d0900bef4f5097cbabf6c84c97310"
+    },
+    {
+      "file": "artwork/van-front.png",
+      "bytes": 88501,
+      "sha256": "97498e72d48aa90a7bf7036fd53978f138abef814fe4508c656c8d3daf849e3f"
+    },
+    {
+      "file": "artwork/van-rear.png",
+      "bytes": 304195,
+      "sha256": "9d64e6b2a96cb71d75611397d721609f0ce57f9b5c291bd90b838bce6ae77fb2"
+    },
+    {
+      "file": "artwork/van-side.png",
+      "bytes": 211555,
+      "sha256": "5f0d338eb64603c24009ef63288df8081df49ce32b5f8996b6b3c32059a14597"
+    }
+  ],
+  "logo": {
+    "source": "zhengzhong-logistics-background/public/assets/logo.png",
+    "sourceSha256": "bc4da3fa745193020788b719d9b5c3a092d80c14ccc8938d1cd2deddb91e549c",
+    "sha256": "68903abebecd116f8f1d4e8cb1136a49cc26ff8f817368de591a9be1dfd015c6",
+    "pixelIdentical": true,
+    "sourceBytes": 2033364,
+    "bytes": 2028734,
+    "optimization": "Smallest of original and two lossless PNG filter strategies; decoded pixels compared byte-for-byte."
+  },
+  "errors": [],
+  "entry": "hero.js",
+  "assetBase": "Resolved relative to hero.js via import.meta.url.",
+  "sceneSource": {
+    "source": "zhengzhong-logistics-background/src",
+    "copy": "animation-workspace/src",
+    "modifications": [
+      "background.ts: abort, resource ownership, English accessible name, poster visibility, restored-context redraw",
+      "rigs.ts: abortable same-origin loading and resource ownership",
+      "world.ts: English brand labels",
+      "camera.ts: fit complete overview bounds to wide, narrow and fullscreen viewports; preserve original tour frames"
+    ]
+  },
+  "runtimeFiles": [
+    {
+      "file": "hero.js",
+      "bytes": 738405,
+      "sha256": "3a818f29457b3a59f544f23c2349a6c072b53a8ccb736a02c287ecbed868615f"
+    },
+    {
+      "file": "poster-desktop.png",
+      "bytes": 652668,
+      "sha256": "a0c6deebbfd6f1e03a14141372ab5e2040ed6a315b48dfd39a8851807292bebc"
+    },
+    {
+      "file": "poster-mobile.png",
+      "bytes": 232913,
+      "sha256": "1050e8413bdf4d8890cba002a321d8d18c422d1337e6a15a38380628a96ece1a"
+    },
+    {
+      "file": "logo.png",
+      "bytes": 2028734,
+      "sha256": "68903abebecd116f8f1d4e8cb1136a49cc26ff8f817368de591a9be1dfd015c6"
+    }
+  ],
+  "heroSource": {
+    "file": "animation-workspace/hero.ts",
+    "sha256": "eefe4f2a7661a64552f2b2ade64f2a122ee38477f420e5b5435e54bb0a05c99f"
+  },
+  "posterCapture": {
+    "source": "Actual approved English homepage, complete-scene overview fitted to the new wide desktop and tall mobile containers.",
+    "devicePixelRatio": 2,
+    "objectFit": "contain",
+    "realSmartphone": false,
+    "captures": [
+      {
+        "name": "desktop",
+        "viewport": [
+          1440,
+          900
+        ],
+        "container": {
+          "left": 24,
+          "top": 148.140625,
+          "width": 1392,
+          "height": 680.671875,
+          "bottom": 828.8125
+        },
+        "mode": "overview"
+      },
+      {
+        "name": "mobile",
+        "viewport": [
+          390,
+          844
+        ],
+        "container": {
+          "left": 12,
+          "top": 175.296875,
+          "width": 366,
+          "height": 561.921875,
+          "bottom": 737.21875
+        },
+        "mode": "overview"
+      }
+    ]
+  },
+  "interface": {
+    "defaultCamera": "overview",
+    "optionalCameraTour": true,
+    "operationsContinue": true,
+    "controls": [
+      "Full scene",
+      "Camera tour",
+      "Pause animation / Resume animation",
+      "Expand view / Exit expanded view"
+    ],
+    "reviewStatus": "Needs two independent reviews after the approved larger full-scene UI change."
+  },
+  "cameraSource": {
+    "file": "animation-workspace/src/camera.ts",
+    "sha256": "678021f9b9af8edfe1ee177819bca4637cba6c4e4a6baf8bedbf21a512a2b11b",
+    "overviewBounds": {
+      "min": [
+        -274,
+        -3,
+        -169
+      ],
+      "max": [
+        274,
+        60,
+        169
+      ]
+    },
+    "projectionPadding": 1.045
+  }
+}
