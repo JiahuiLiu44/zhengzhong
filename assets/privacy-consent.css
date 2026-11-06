@@ -1,0 +1,31 @@
+/* Namespaced, additive UI. No global home-page style overrides. */
+.zz-consent,.zz-privacy-links,.zz-privacy-dialog{font:14px/1.65 system-ui,-apple-system,"PingFang SC",sans-serif;color:#21374b;box-sizing:border-box}
+.zz-consent *,.zz-privacy-links *,.zz-privacy-dialog *{box-sizing:border-box}
+.zz-consent [hidden],.zz-consent[hidden],.zz-privacy-dialog [hidden]{display:none!important}
+.zz-consent{background:#f2f6f8;border-bottom:1px solid #cbd7df;position:relative;padding:20px 24px}
+.zz-consent--home{margin-top:68px;margin-bottom:-68px}
+.zz-consent-inner{max-width:1220px;margin:0 auto;display:flex;align-items:center;gap:24px;justify-content:space-between}
+.zz-consent-copy{flex:1;min-width:0;max-width:760px}
+.zz-consent .zz-kicker,.zz-privacy-dialog .zz-kicker{display:block;font-size:11px;font-weight:650;letter-spacing:1.5px;color:#52667a;margin:0 0 5px}
+.zz-consent h2{font:650 18px/1.4 system-ui,-apple-system,"PingFang SC",sans-serif;margin:0 0 6px;color:#162f46}
+.zz-consent p,.zz-privacy-dialog p{margin:5px 0}
+.zz-consent-actions{display:flex;gap:10px;flex-wrap:wrap}
+.zz-consent button,.zz-privacy-dialog button{font:600 14px/1.4 system-ui,-apple-system,"PingFang SC",sans-serif;border:1px solid #31546d;background:white;color:#163b56;border-radius:6px;min-height:44px;padding:11px 16px;cursor:pointer;white-space:normal}
+.zz-consent button:hover,.zz-privacy-dialog button:hover{background:#e5eef4}
+.zz-consent a,.zz-privacy-dialog a,.zz-privacy-links a,.zz-privacy-links button{color:#1d5378;text-decoration:underline;text-underline-offset:3px}
+.zz-consent :focus-visible,.zz-privacy-dialog :focus-visible,.zz-privacy-links :focus-visible{outline:3px solid #bf681a;outline-offset:3px}
+.zz-consent small{font-size:12px;color:#5a6875;display:block;margin-top:6px}
+.zz-privacy-links{padding:20px 24px;background:#eef3f6;border-top:1px solid #cbd7df;display:flex;align-items:center;justify-content:center;gap:12px 24px;flex-wrap:wrap}
+.zz-privacy-links button{font:inherit;border:0;padding:9px 2px;background:transparent;cursor:pointer;min-height:44px}
+.zz-privacy-links a{display:inline-flex;align-items:center;min-height:44px}
+.zz-privacy-links span{font-size:12px;color:#576977}
+.zz-privacy-dialog{border:1px solid #b5c8d5;border-radius:12px;padding:30px;max-width:560px;width:calc(100% - 32px);max-height:calc(100dvh - 40px);overflow:auto;margin:auto;background:#fff;box-shadow:0 16px 70px #122d4650}
+.zz-privacy-dialog::backdrop{background:#0e22347a}
+.zz-privacy-dialog h2{font:650 25px/1.4 system-ui,-apple-system,"PingFang SC",sans-serif;margin:5px 0 16px;color:#16334b}
+.zz-privacy-dialog .zz-choice-row{padding:16px 0;border-top:1px solid #e0e8ed}
+.zz-privacy-dialog .zz-choice-row strong{display:block;font-size:16px}
+.zz-privacy-dialog .zz-consent-actions{margin-top:18px}
+.zz-privacy-dialog [data-consent-close]{margin-top:12px;border-color:transparent;background:transparent;text-decoration:underline}
+.zz-privacy-dialog [data-consent-current]{background:#f2f6f8;padding:12px;border-radius:5px}
+@media(max-width:700px){.zz-consent{padding:18px 16px}.zz-consent-inner{display:block}.zz-consent-actions{margin-top:14px}.zz-consent-actions button{flex:1;min-width:120px;padding:11px 10px}.zz-consent h2{font-size:17px}.zz-privacy-links{padding:14px 16px;gap:6px 20px}.zz-privacy-links span{flex:1 0 100%;text-align:center}.zz-privacy-dialog{padding:22px}}
+@media(prefers-reduced-motion:reduce){.zz-privacy-dialog{scroll-behavior:auto}}
