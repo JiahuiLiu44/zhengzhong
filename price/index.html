@@ -13,14 +13,53 @@
 <link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/price/">
 <link rel="stylesheet" href="/assets/language-switch.css">
 <!-- /ZZ-EN-LANGUAGE-METADATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://zhengzhong.tech/#organization",
+      "name": "郑中海外仓",
+      "url": "https://zhengzhong.tech/",
+      "logo": "https://zhengzhong.tech/assets/optimized/zhengzhong-logo-256.webp"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://zhengzhong.tech/#website",
+      "url": "https://zhengzhong.tech/",
+      "name": "郑中海外仓",
+      "inLanguage": [
+        "zh-CN",
+        "en-US"
+      ],
+      "publisher": {
+        "@id": "https://zhengzhong.tech/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://zhengzhong.tech/price/#webpage",
+      "url": "https://zhengzhong.tech/price/",
+      "name": "郑中海外仓报价查询器",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://zhengzhong.tech/#website"
+      }
+    }
+  ]
+}
+</script>
+<link rel="icon" type="image/webp" href="/assets/optimized/zhengzhong-logo-96.webp">
 </head>
 <body>
+  <a class="skip-link" href="#quoteForm">跳到报价查询</a>
   <main class="app-shell">
     <header class="topbar">
       <div class="brand">
-        <img src="assets/logo.png" alt="郑中海外仓">
+        <picture><source type="image/webp" srcset="/assets/optimized/zhengzhong-logo-96.webp 96w, /assets/optimized/zhengzhong-logo-256.webp 256w" sizes="48px"><img src="assets/logo.png" alt="郑中海外仓" width="1416" height="1416" decoding="async"></picture>
         <div>
-          <div class="brand-name">郑中海外仓</div>
+          <h1 class="brand-name">郑中海外仓</h1>
           <div class="brand-sub">郑中报价系统</div>
         </div>
       </div>
@@ -35,12 +74,12 @@
     </header>
 
     <section class="workspace wizard-workspace">
-      <form class="quote-panel wizard-panel" id="quoteForm">
+      <form class="quote-panel wizard-panel" id="quoteForm" tabindex="-1" novalidate>
         <div class="progress">
           <div class="progress-head" id="resultTopActions">
             <button type="button" class="ghost-btn result-top-action" data-back>返回修改</button>
             <div class="progress-status">
-              <span id="progressText">第 1 步 / 共 3 步</span>
+              <span id="progressText" role="status" aria-live="polite">第 1 步 / 共 3 步</span>
               <div class="progress-track"><div id="progressBar"></div></div>
             </div>
             <button type="button" class="primary-btn result-top-action" id="startOverBtn">重新开始</button>
@@ -50,106 +89,107 @@
         <section class="section-block wizard-step" data-step="service">
           <div class="section-head">
             <span class="step">1</span>
-            <h2>业务类型</h2>
+            <h2 tabindex="-1">业务类型</h2>
           </div>
-          <div class="segmented service-options" role="tablist" aria-label="业务类型">
-            <label><input type="radio" name="service" value="fulfillment" checked><span>一件代发</span></label>
-            <label><input type="radio" name="service" value="y2Exchange"><span>Y2换单</span></label>
-            <label><input type="radio" name="service" value="relocation"><span>移仓换标</span></label>
-            <label><input type="radio" name="service" value="whatnot"><span>感谢信</span></label>
-            <label><input type="radio" name="service" value="otherServices"><span>其他服务</span></label>
+          <div class="segmented service-options" role="group" aria-label="业务类型">
+            <input type="radio" name="service" value="fulfillment" checked hidden><button type="button" class="option" data-field="service" data-value="fulfillment" aria-pressed="true">一件代发</button>
+            <input type="radio" name="service" value="y2Exchange" hidden><button type="button" class="option" data-field="service" data-value="y2Exchange" aria-pressed="false">Y2换单</button>
+            <input type="radio" name="service" value="relocation" hidden><button type="button" class="option" data-field="service" data-value="relocation" aria-pressed="false">移仓换标</button>
+            <input type="radio" name="service" value="whatnot" hidden><button type="button" class="option" data-field="service" data-value="whatnot" aria-pressed="false">感谢信</button>
+            <input type="radio" name="service" value="otherServices" hidden><button type="button" class="option" data-field="service" data-value="otherServices" aria-pressed="false">其他服务</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="productType">
           <div class="section-head">
             <span class="step">2</span>
-            <h2>商品类型</h2>
+            <h2 tabindex="-1">商品类型</h2>
           </div>
-          <div class="segmented compact" role="radiogroup" aria-label="商品类型">
-            <label><input type="radio" name="productType" value="general" checked><span>普货</span></label>
-            <label><input type="radio" name="productType" value="sensitive"><span>敏感货</span></label>
+          <div class="segmented compact" role="group" aria-label="商品类型">
+            <input type="radio" name="productType" value="general" checked hidden><button type="button" class="option" data-field="productType" data-value="general" aria-pressed="true">普货</button>
+            <input type="radio" name="productType" value="sensitive" hidden><button type="button" class="option" data-field="productType" data-value="sensitive" aria-pressed="false">敏感货</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="dailyVolume">
           <div class="section-head">
-            <span class="step">3</span>
-            <h2>每天单量</h2>
+            <span class="step">4</span>
+            <h2 tabindex="-1">每天单量</h2>
           </div>
-          <div class="segmented volume-options" role="radiogroup" aria-label="每天单量">
-            <label><input type="radio" name="dailyVolume" value="trial" checked><span>0-50 单<br><small>测品客户</small></span></label>
-            <label><input type="radio" name="dailyVolume" value="small"><span>50-100 单</span></label>
-            <label><input type="radio" name="dailyVolume" value="medium"><span>100-500 单</span></label>
-            <label><input type="radio" name="dailyVolume" value="large"><span>500+ 单</span></label>
+          <div class="segmented volume-options" role="group" aria-label="每天单量">
+            <input type="radio" name="dailyVolume" value="trial" checked hidden><button type="button" class="option" data-field="dailyVolume" data-value="trial" aria-pressed="true">0-50 单<br><small>测品客户</small></button>
+            <input type="radio" name="dailyVolume" value="small" hidden><button type="button" class="option" data-field="dailyVolume" data-value="small" aria-pressed="false">50-100 单</button>
+            <input type="radio" name="dailyVolume" value="medium" hidden><button type="button" class="option" data-field="dailyVolume" data-value="medium" aria-pressed="false">100-500 单</button>
+            <input type="radio" name="dailyVolume" value="large" hidden><button type="button" class="option" data-field="dailyVolume" data-value="large" aria-pressed="false">500+ 单</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="weightBand">
           <div class="section-head">
-            <span class="step">4</span>
-            <h2>商品重量</h2>
+            <span class="step">3</span>
+            <h2 tabindex="-1">商品重量</h2>
           </div>
-          <div class="segmented weight-options" role="radiogroup" aria-label="商品重量">
-            <label><input type="radio" name="weightBand" value="0-1" checked><span>0-1KG</span></label>
-            <label><input type="radio" name="weightBand" value="1-2"><span>1-2KG</span></label>
-            <label><input type="radio" name="weightBand" value="2-5"><span>2-5KG</span></label>
-            <label><input type="radio" name="weightBand" value="5-10"><span>5-10KG</span></label>
-            <label><input type="radio" name="weightBand" value="10-15"><span>10-15KG</span></label>
-            <label><input type="radio" name="weightBand" value="15-22"><span>15-22KG</span></label>
+          <div class="segmented weight-options" role="group" aria-label="商品重量">
+            <input type="radio" name="weightBand" value="0-1" checked hidden><button type="button" class="option" data-field="weightBand" data-value="0-1" aria-pressed="true">0-1KG</button>
+            <input type="radio" name="weightBand" value="1-2" hidden><button type="button" class="option" data-field="weightBand" data-value="1-2" aria-pressed="false">1-2KG</button>
+            <input type="radio" name="weightBand" value="2-5" hidden><button type="button" class="option" data-field="weightBand" data-value="2-5" aria-pressed="false">2-5KG</button>
+            <input type="radio" name="weightBand" value="5-10" hidden><button type="button" class="option" data-field="weightBand" data-value="5-10" aria-pressed="false">5-10KG</button>
+            <input type="radio" name="weightBand" value="10-15" hidden><button type="button" class="option" data-field="weightBand" data-value="10-15" aria-pressed="false">10-15KG</button>
+            <input type="radio" name="weightBand" value="15-22" hidden><button type="button" class="option" data-field="weightBand" data-value="15-22" aria-pressed="false">15-22KG</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="y2Volume">
           <div class="section-head">
             <span class="step">2</span>
-            <h2>Y2换单</h2>
+            <h2 tabindex="-1">Y2换单</h2>
           </div>
-          <div class="segmented compact" role="radiogroup" aria-label="Y2换单单量">
-            <label><input type="radio" name="y2Volume" value="standard" checked><span>0-1000 单</span></label>
-            <label><input type="radio" name="y2Volume" value="bulk"><span>1000+ 单</span></label>
+          <div class="segmented compact" role="group" aria-label="Y2换单单量">
+            <input type="radio" name="y2Volume" value="standard" checked hidden><button type="button" class="option" data-field="y2Volume" data-value="standard" aria-pressed="true">0-1000 单</button>
+            <input type="radio" name="y2Volume" value="bulk" hidden><button type="button" class="option" data-field="y2Volume" data-value="bulk" aria-pressed="false">1000+ 单</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="whatnotVolume">
           <div class="section-head">
             <span class="step">2</span>
-            <h2>感谢信</h2>
+            <h2 tabindex="-1">感谢信</h2>
           </div>
-          <div class="segmented weight-options" role="radiogroup" aria-label="感谢信单量">
-            <label><input type="radio" name="whatnotVolume" value="unknown" checked><span>0-50 单<br><small>未知</small></span></label>
-            <label><input type="radio" name="whatnotVolume" value="small"><span>50-100 单</span></label>
-            <label><input type="radio" name="whatnotVolume" value="large"><span>100+ 单</span></label>
+          <div class="segmented weight-options" role="group" aria-label="感谢信单量">
+            <input type="radio" name="whatnotVolume" value="unknown" checked hidden><button type="button" class="option" data-field="whatnotVolume" data-value="unknown" aria-pressed="true">0-50 单<br><small>未知</small></button>
+            <input type="radio" name="whatnotVolume" value="small" hidden><button type="button" class="option" data-field="whatnotVolume" data-value="small" aria-pressed="false">50-100 单</button>
+            <input type="radio" name="whatnotVolume" value="large" hidden><button type="button" class="option" data-field="whatnotVolume" data-value="large" aria-pressed="false">100+ 单</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="relocationVolume">
           <div class="section-head">
             <span class="step">2</span>
-            <h2>移仓产品总数量</h2>
+            <h2 tabindex="-1">移仓产品总数量</h2>
           </div>
-          <div class="segmented compact" role="radiogroup" aria-label="移仓产品总数量">
-            <label><input type="radio" name="relocationVolume" value="standard" checked><span>0-10000</span></label>
-            <label><input type="radio" name="relocationVolume" value="bulk"><span>10000+</span></label>
+          <div class="segmented compact" role="group" aria-label="移仓产品总数量">
+            <input type="radio" name="relocationVolume" value="standard" checked hidden><button type="button" class="option" data-field="relocationVolume" data-value="standard" aria-pressed="true">0-10000</button>
+            <input type="radio" name="relocationVolume" value="bulk" hidden><button type="button" class="option" data-field="relocationVolume" data-value="bulk" aria-pressed="false">10000+</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="relocationSku">
           <div class="section-head">
             <span class="step">3</span>
-            <h2>SKU总数</h2>
+            <h2 tabindex="-1">SKU总数</h2>
           </div>
-          <div class="segmented compact" role="radiogroup" aria-label="SKU总数">
-            <label><input type="radio" name="relocationSku" value="upToFive" checked><span>0-5</span></label>
-            <label><input type="radio" name="relocationSku" value="overFive"><span>5+</span></label>
+          <div class="segmented compact" role="group" aria-label="SKU总数">
+            <input type="radio" name="relocationSku" value="upToFive" checked hidden><button type="button" class="option" data-field="relocationSku" data-value="upToFive" aria-pressed="true">0-5</button>
+            <input type="radio" name="relocationSku" value="overFive" hidden><button type="button" class="option" data-field="relocationSku" data-value="overFive" aria-pressed="false">5+</button>
           </div>
         </section>
 
         <section class="section-block wizard-step hidden" data-step="otherServices">
           <div class="section-head">
             <span class="step">2</span>
-            <h2>其他服务</h2>
+            <h2 tabindex="-1">其他服务</h2>
           </div>
+          <p id="otherError" class="validation-error hidden" role="alert" tabindex="-1"></p>
           <div class="addon-list" id="otherAddonList"></div>
           <div class="wizard-actions">
             <button type="button" class="primary-btn" id="otherResultBtn">查看报价</button>
@@ -162,12 +202,12 @@
             <span id="resultLabel">报价结果</span>
             <button type="button" id="resetBtn" title="重新开始">↺</button>
           </div>
-          <div class="total" id="totalPrice">$0.00</div>
+          <div class="total" id="totalPrice" aria-live="polite">$0.00</div>
           <div class="hint" id="manualHint">部分项目需要单独询价</div>
           </div>
 
           <section class="breakdown">
-            <h2>报价明细</h2>
+            <h2 tabindex="-1">报价明细</h2>
             <div id="breakdownRows"></div>
           </section>
 
@@ -179,7 +219,7 @@
             <div class="addon-collapse-body hidden" id="addonCollapseBody">
               <div class="inline-selector">
               <h3>清点上架费用</h3>
-              <div class="segmented weight-options" role="radiogroup" aria-label="清点上架费用">
+              <div class="segmented weight-options" role="group" aria-label="清点上架费用">
                 <label><input type="radio" name="skuCountTier" value="one" checked><span>单箱 1 SKU<br><small>$0 / 箱</small></span></label>
                 <label><input type="radio" name="skuCountTier" value="twoToFive"><span>单箱 2-5 SKU<br><small>$1 / 箱</small></span></label>
                 <label><input type="radio" name="skuCountTier" value="overFive"><span>单箱 5+ SKU<br><small>$2 / 箱</small></span></label>
@@ -216,7 +256,7 @@
 
           <section class="contact-card hidden" id="fulfillmentContactSection">
             <div>
-              <h2>联系我们</h2>
+              <h2 tabindex="-1">联系我们</h2>
               <p>需要确认报价或提交需求，可以添加郑中海外仓微信。</p>
             </div>
             <button type="button" id="wechatBtn">
@@ -236,7 +276,7 @@
           </section>
 
           <section class="notes">
-            <h2>服务说明和规则说明</h2>
+            <h2 tabindex="-1">服务说明和规则说明</h2>
             <ul>
               <li id="ruleServiceLine">一件代发费用为：订单处理 + 扫码验货 + 打包 + 扫码出库。</li>
               <li id="ruleWeightLine">抛货取体积重和实际重量中的较大值，体积重按长 × 宽 × 高（cm）/ 6000 或长 × 宽 × 高（inch）/ 167 计算。</li>

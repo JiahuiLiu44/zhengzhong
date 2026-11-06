@@ -148,11 +148,13 @@ function selectedRadio(name) {
 }
 
 function num(id) {
-  const value = parseFloat($(id)?.value || "0");
-  return Number.isFinite(value) && value > 0 ? value : 0;
+  const value = Number($(id)?.value);
+  if (!Number.isFinite(value) || value <= 0) throw new Error("请输入大于 0 的有效数量");
+  return value;
 }
 
-function goToStep(step, pushHistory = true) {
+function goToStep(step, pushHistory = true, focus = true) {
+  if (step === "result" && selectedRadio("service") === "otherServices" && !validateAddons()) return;
   if (pushHistory && activeStep !== step) historyStack.push(activeStep);
   activeStep = step;
   document.querySelectorAll(".wizard-step").forEach((panel) => {
@@ -160,6 +162,10 @@ function goToStep(step, pushHistory = true) {
   });
   updateProgress();
   if (step === "result") renderResult();
+  if (focus) {
+    document.querySelector(`[data-step="${step}"] h2`)?.focus({preventScroll: true});
+    $("quoteForm").scrollIntoView({block: "start", behavior: "instant"});
+  }
 }
 
 function goBack() {
@@ -186,6 +192,7 @@ function updateProgress() {
   $("progressText").textContent = `第 ${current} 步 / 共 ${total} 步`;
   $("progressBar").style.width = `${Math.min(100, Math.round((current / total) * 100))}%`;
   $("resultTopActions").classList.toggle("show-actions", activeStep !== "service");
+  document.querySelectorAll(".result-top-action").forEach(button => { button.disabled = activeStep === "service"; });
 }
 
 function serviceNextStep(service) {
@@ -319,7 +326,9 @@ function renderResult() {
 
   $("resultLabel").textContent = service === "fulfillment" ? "一件代发单价" : service === "relocation" ? "移仓换标单价" : "报价结果";
   $("totalPrice").textContent = service === "fulfillment" ? `${money(total)}/单` : service === "relocation" ? `${money(total)}/件` : money(total);
-  $("manualHint").textContent = hasManual ? "包含需人工确认项目" : "当前项目可自动估算";
+  if (hasManual && lines.every(line => line.manual)) $("totalPrice").textContent = "单询";
+  else if (hasManual) $("resultLabel").textContent = "已计价项目小计";
+  $("manualHint").textContent = hasManual ? "包含需人工确认项目，单询费用未计入小计" : "当前项目可自动估算";
   $("manualHint").classList.toggle("clean", !hasManual);
 
   $("breakdownRows").innerHTML = breakdownLines.length ? breakdownLines.map((line) => `
@@ -477,7 +486,8 @@ function renderAddons(targetId, prefix) {
       <label class="addon">
         <input id="${prefix}_${addon.id}Enabled" type="checkbox">
         <span>${addon.name}<small>${priceText}</small></span>
-        <input id="${prefix}_${addon.id}Qty" type="number" min="0" step="1" value="${addon.manual ? 1 : 0}" aria-label="${addon.name}数量">
+        <input id="${prefix}_${addon.id}Qty" type="number" min="0" step="any" value="${addon.manual ? 1 : 0}" aria-label="${addon.name}数量">
+        <small id="${prefix}_${addon.id}Error" class="addon-error hidden"></small>
       </label>
     `;
   }).join("");
@@ -485,39 +495,48 @@ function renderAddons(targetId, prefix) {
 
 function startOver() {
   $("quoteForm").reset();
+  syncOptions();
+  clearAddonErrors();
   historyStack = [];
   goToStep("service", false);
 }
 
 renderAddons("otherAddonList", "otherAddon");
-document.querySelectorAll('input[name="service"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep(serviceNextStep(input.value)));
-  input.addEventListener("click", () => goToStep(serviceNextStep(input.value)));
+const nextSteps = {service: () => serviceNextStep(selectedRadio("service")), productType: () => "weightBand", weightBand: () => "dailyVolume", dailyVolume: () => "result", y2Volume: () => "result", whatnotVolume: () => "result", relocationVolume: () => "relocationSku", relocationSku: () => "result"};
+document.querySelectorAll("button[data-field]").forEach(button => {
+  button.addEventListener("click", () => {
+    const {field, value} = button.dataset;
+    document.querySelectorAll(`input[name="${field}"]`).forEach(input => {input.checked = input.value === value;});
+    syncOptions();
+    goToStep(nextSteps[field]());
+  });
 });
-document.querySelectorAll('input[name="productType"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep("weightBand"));
-  input.addEventListener("click", () => goToStep("weightBand"));
-});
-document.querySelectorAll('input[name="dailyVolume"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep("result"));
-  input.addEventListener("click", () => goToStep("result"));
-});
-document.querySelectorAll('input[name="weightBand"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep("dailyVolume"));
-  input.addEventListener("click", () => goToStep("dailyVolume"));
-});
-document.querySelectorAll('input[name="y2Volume"], input[name="whatnotVolume"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep("result"));
-  input.addEventListener("click", () => goToStep("result"));
-});
-document.querySelectorAll('input[name="relocationVolume"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep("relocationSku"));
-  input.addEventListener("click", () => goToStep("relocationSku"));
-});
-document.querySelectorAll('input[name="relocationSku"]').forEach((input) => {
-  input.addEventListener("change", () => goToStep("result"));
-  input.addEventListener("click", () => goToStep("result"));
-});
+function syncOptions() {
+  document.querySelectorAll("button[data-field]").forEach(button => button.setAttribute("aria-pressed", String(selectedRadio(button.dataset.field) === button.dataset.value)));
+}
+function clearAddonErrors() {
+  $("otherError").textContent = "";
+  $("otherError").classList.add("hidden");
+  document.querySelectorAll('#otherAddonList [aria-invalid]').forEach(input => {input.removeAttribute('aria-invalid');input.removeAttribute('aria-describedby');});
+  document.querySelectorAll('#otherAddonList .addon-error').forEach(error => {error.textContent='';error.classList.add('hidden');});
+}
+function validateAddons() {
+  clearAddonErrors();
+  const chosen = pricing.addons.filter(addon => $(`otherAddon_${addon.id}Enabled`).checked);
+  const invalid = chosen.filter(addon => !addon.manual && (!Number.isFinite(Number($(`otherAddon_${addon.id}Qty`).value)) || Number($(`otherAddon_${addon.id}Qty`).value) <= 0 || !Number.isFinite(Number($(`otherAddon_${addon.id}Qty`).value) * addon.price)));
+  const sum = chosen.reduce((total, addon) => total + (addon.manual ? 0 : Number($(`otherAddon_${addon.id}Qty`).value) * addon.price), 0);
+  if (chosen.length && !invalid.length && Number.isFinite(sum)) return true;
+  $("otherError").textContent = !chosen.length ? "请至少选择一项服务。" : invalid.length ? "所选服务的数量必须为大于 0 的有效数字，请检查标记的输入框。" : "数量过大，无法生成有效报价，请检查数量。";
+  $("otherError").classList.remove("hidden");
+  invalid.forEach(addon => {
+    const input=$(`otherAddon_${addon.id}Qty`), error=$(`otherAddon_${addon.id}Error`);
+    error.textContent='请输入大于 0 且可计算的有效数量。';error.classList.remove('hidden');
+    input.setAttribute('aria-invalid','true');input.setAttribute('aria-describedby',error.id);
+  });
+  (invalid.length ? $(`otherAddon_${invalid[0].id}Qty`) : $("otherError")).focus();
+  return false;
+}
+$("quoteForm").addEventListener("submit", event => {event.preventDefault();if(activeStep === "otherServices") goToStep("result");});
 document.querySelectorAll("[data-back]").forEach((button) => button.addEventListener("click", goBack));
 $("otherResultBtn").addEventListener("click", () => goToStep("result"));
 $("resetBtn").addEventListener("click", startOver);
@@ -548,4 +567,4 @@ document.addEventListener("input", () => {
 document.addEventListener("change", (event) => {
   if (activeStep === "result" && event.target.name === "skuCountTier") renderResult();
 });
-goToStep("service", false);
+goToStep("service", false, false);

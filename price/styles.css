@@ -864,3 +864,18 @@ input {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Native wizard controls and error/focus feedback. */
+.brand-name{margin:0}
+.segmented input[hidden]{display:none}
+.segmented .option{font:inherit;font-size:18px;font-weight:700;min-height:92px;border:1px solid var(--line);border-radius:8px;background:var(--soft);color:var(--ink);padding:12px;cursor:pointer;text-align:center}
+.segmented .option[aria-pressed="true"]{color:#fff;border-color:var(--blue);background:var(--blue)}
+.segmented .option small{display:inline-block}
+:focus-visible{outline:3px solid #b65c13;outline-offset:4px}
+.segmented input:focus-visible+span{outline:3px solid #b65c13;outline-offset:4px}
+.validation-error{color:#8c2424;background:#fff3f3;padding:14px;border-left:4px solid #9d3b3b;line-height:1.6}
+.addon .addon-error{grid-column:1/-1;color:#8c2424;font-size:13px;line-height:1.5}
+input[aria-invalid="true"]{border:2px solid #9d3b3b;background:#fff3f3}
+.skip-link{position:fixed;top:8px;left:12px;z-index:2000;padding:12px;background:#fff;color:#142033;transform:translateY(-160%)}
+.skip-link:focus{transform:none}
+@media(max-width:640px){.segmented .option{font-size:16px;min-height:84px}.addon input[type="number"]{font-size:16px}.ghost-btn,.primary-btn,.home-link{min-height:44px}}
