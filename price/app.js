@@ -1,15 +1,15 @@
 const pricing = {
   fulfillment: {
     trial: {
-      label: "0-50 单/天（测品）",
+      label: "0-49 单/天（测品）",
       rates: { "0-1": 0.8, "1-2": 1.0, "2-5": 1.5, "5-10": 2.0, "10-15": 2.5, "15-22": 3.0 },
     },
     small: {
-      label: "50-100 单/天",
+      label: "50-99 单/天",
       rates: { "0-1": 0.73, "1-2": 0.9, "2-5": 1.5, "5-10": 2.0, "10-15": 2.5, "15-22": 3.0 },
     },
     medium: {
-      label: "100-500 单/天",
+      label: "100-499 单/天",
       rates: { "0-1": 0.67, "1-2": 0.82, "2-5": 1.5, "5-10": 2.0, "10-15": 2.5, "15-22": 3.0 },
     },
     large: {
@@ -18,22 +18,22 @@ const pricing = {
     },
   },
   y2Exchange: {
-    standard: { label: "0-1000 单", price: 0.35 },
+    standard: { label: "0-999 单", price: 0.35 },
     bulk: { label: "1000+ 单", price: 0.3 },
   },
   relocation: {
     volume: {
-      standard: { label: "0-10000 件", price: 0.35 },
+      standard: { label: "0-9999 件", price: 0.35 },
       bulk: { label: "10000+ 件", price: 0.3 },
     },
     sku: {
       upToFive: { label: "0-5 个 SKU", price: 0 },
-      overFive: { label: "5+ 个 SKU", price: 0.05 },
+      overFive: { label: "超过 5 个 SKU", price: 0.05 },
     },
   },
   whatnot: {
-    unknown: { label: "0-50 单（未知）", price: 0.6 },
-    small: { label: "50-100 单", price: 0.5 },
+    unknown: { label: "0-49 单（未知）", price: 0.6 },
+    small: { label: "50-99 单", price: 0.5 },
     large: { label: "100+ 单", price: 0.4 },
   },
   weightLabels: {
@@ -68,7 +68,7 @@ const pricing = {
     { id: "photo", name: "拍照费", unit: "张", price: 1 },
     { id: "video", name: "视频拍摄", unit: "个", price: 5 },
     { id: "inspect", name: "检查货物包装及外观", unit: "个", price: 2 },
-    { id: "destroy", name: "销毁处理费", unit: "kg", price: 1, note: "最低 $50/票" },
+    { id: "destroy", name: "销毁处理费", unit: "kg", price: 1, note: "按实际重量计费，不设最低收费" },
     { id: "dimensionCheck", name: "商品尺寸重量复核", unit: "件", price: 5 },
     { id: "detentionBox", name: "压仓费", unit: "箱/天", price: 1 },
     { id: "detentionPallet", name: "压仓费", unit: "卡板/天", price: 8 },
@@ -239,10 +239,16 @@ function fulfillmentLines() {
   const skuPricing = {
     one: { label: "单箱 1 SKU", price: 0 },
     twoToFive: { label: "单箱 2-5 SKU", price: 1 },
-    overFive: { label: "单箱 5+ SKU", price: 2 },
+    overFive: { label: "单箱超过 5 SKU", price: 2 },
   };
   const skuRate = skuPricing[skuTier];
-  addLine(lines, "清点上架费", 1, "箱", skuRate.price, skuRate.label);
+  lines.push({
+    name: "清点上架费",
+    detail: `${skuRate.label} · 按实际箱数另计，不计入每单处理费`,
+    amount: 0,
+    informational: true,
+    display: `${money(skuRate.price)}/箱`,
+  });
 
   return lines;
 }
@@ -325,10 +331,11 @@ function renderResult() {
   const total = lines.reduce((sum, line) => sum + line.amount, 0);
 
   $("resultLabel").textContent = service === "fulfillment" ? "一件代发单价" : service === "relocation" ? "移仓换标单价" : "报价结果";
-  $("totalPrice").textContent = service === "fulfillment" ? `${money(total)}/单` : service === "relocation" ? `${money(total)}/件` : money(total);
+  const perOrder = ["fulfillment", "y2Exchange", "whatnot"].includes(service);
+  $("totalPrice").textContent = perOrder ? `${money(total)}/单` : service === "relocation" ? `${money(total)}/件` : money(total);
   if (hasManual && lines.every(line => line.manual)) $("totalPrice").textContent = "单询";
   else if (hasManual) $("resultLabel").textContent = "已计价项目小计";
-  $("manualHint").textContent = hasManual ? "包含需人工确认项目，单询费用未计入小计" : "当前项目可自动估算";
+  $("manualHint").textContent = hasManual ? "包含需人工确认项目，单询费用未计入小计" : service === "fulfillment" ? "当前项目可自动估算；清点上架费按箱另计，不计入每单处理费" : "当前项目可自动估算";
   $("manualHint").classList.toggle("clean", !hasManual);
 
   $("breakdownRows").innerHTML = breakdownLines.length ? breakdownLines.map((line) => `
@@ -344,6 +351,41 @@ function renderResult() {
   renderFulfillmentAddonPrices(service);
   renderRelocationAddonPrices(service);
   renderRules(service);
+  renderQuoteSummary();
+}
+
+function quoteSummaryText() {
+  if (activeStep !== "result") throw new Error("请先完成报价选择。");
+  const service = selectedRadio("service");
+  if (service === "otherServices" && !validateAddons()) throw new Error("请检查数量后重新生成报价。");
+  const lines = currentLines();
+  const total = lines.reduce((sum, line) => sum + line.amount, 0);
+  if (!lines.length || !Number.isFinite(total)) throw new Error("请检查所选项目和数量。");
+  const names = {fulfillment:"一件代发",y2Exchange:"Y2 换单",relocation:"移仓换标",whatnot:"感谢信",otherServices:"其他仓内服务"};
+  const unit = ["fulfillment", "y2Exchange", "whatnot"].includes(service) ? "/单" : service === "relocation" ? "/件" : "";
+  const manual = lines.filter(line => line.manual);
+  const charged = lines.filter(line => !line.manual && !line.informational);
+  const reference = lines.filter(line => line.informational);
+  const text = ["郑中海外仓 · 询价摘要", "参考估算，需人工核价。", `业务：${names[service]}`];
+  if (service === "fulfillment") text.push(`货物类型：${selectedRadio("productType") === "sensitive" ? "敏感货（需确认接收条件）" : "普货"}`);
+  text.push(`已计价${unit ? "单价" : "项目小计"}：${charged.length ? money(total) + unit : "暂无，所选项目需单询"}`);
+  if (charged.length) text.push("", "已计价项目：", ...charged.map(line => `${line.name}：${money(line.amount)}${unit}；${line.detail}`));
+  if (reference.length) text.push("", "单价参考／未计入上方金额：", ...reference.map(line => `${line.name}：${line.display}；${line.detail}`));
+  if (manual.length) text.push("", "需人工确认（未计入上方金额）：", ...manual.map(line => `${line.name}：单询`));
+  text.push("", "未输入数量或未选择的服务不视为已包含；仓储、耗材、运输及其他操作范围请另行核对。", "口径核对日期：2026-11-06（数量与 SKU 档位、计费单位、销毁最低额）。", "微信：zhengzhonghwc", "邮箱：shiyi@zhengzhong.tech");
+  return text.join("\n");
+}
+
+function renderQuoteSummary() {
+  $("copyQuoteStatus").textContent = "";
+  try {
+    $("quoteSummaryText").value = quoteSummaryText();
+    $("copyQuoteBtn").disabled = false;
+  } catch (error) {
+    $("quoteSummaryText").value = "";
+    $("copyQuoteBtn").disabled = true;
+    $("copyQuoteStatus").textContent = error.message;
+  }
 }
 
 function renderFulfillmentAddonPrices(service) {
@@ -448,26 +490,26 @@ function renderRules(service) {
     ],
     y2Exchange: [
       "Y2换单按客户选择的单量档位计费。",
-      "0-1000 单为 $0.35/单，1000+ 单为 $0.30/单。",
+      "0-999 单为 $0.35/单，1000+ 单为 $0.30/单。",
       "如涉及特殊渠道、异常处理或额外人工操作，以人工确认为准。",
       "最终费用以实际订单数据和系统记录为准。",
     ],
     relocation: [
-      "移仓产品总数量 0-10000 件，产品处理费为 $0.35/件；10000+ 件为 $0.30/件。",
-      "SKU 总数 0-5 个免分拣费；5+ 个 SKU，分拣费为 $0.05/件。",
+      "移仓产品总数量 0-9999 件，产品处理费为 $0.35/件；10000+ 件为 $0.30/件。",
+      "SKU 总数 0-5 个免分拣费，恰好 5 个仍免费；超过 5 个 SKU，分拣费为 $0.05/件。",
       "散货入仓免费；整托入仓 $15/托盘；装箱费人工 $6/箱；外箱标签 $1/张。",
       "页面显示的是单价，最终费用以实际操作数量和系统记录为准。",
     ],
     whatnot: [
       "感谢信按客户选择的单量档位计费。",
-      "0-50 单（未知）为 $0.60/单，50-100 单为 $0.50/单，100+ 单为 $0.40/单。",
+      "0-49 单（未知）为 $0.60/单，50-99 单为 $0.50/单，100+ 单为 $0.40/单。",
       "如涉及特殊包装、拍照、检查、退货或其他人工服务，需另计增值服务费用。",
       "最终费用以实际订单数据和系统记录为准。",
     ],
     otherServices: [
       "其他服务按客户勾选的增值服务项目计费。",
       "单询项目需要人工确认报价。",
-      "带最低收费、特殊条件或异常处理的项目，以实际操作要求和仓库确认为准。",
+      "销毁处理费按 $1/kg 计费，不设最低收费；特殊条件或异常处理的项目，以实际操作要求和仓库确认为准。",
       "最终费用以实际订单数据和系统记录为准。",
     ],
   };
@@ -540,6 +582,24 @@ $("quoteForm").addEventListener("submit", event => {event.preventDefault();if(ac
 document.querySelectorAll("[data-back]").forEach((button) => button.addEventListener("click", goBack));
 $("otherResultBtn").addEventListener("click", () => goToStep("result"));
 $("resetBtn").addEventListener("click", startOver);
+$("copyQuoteBtn").addEventListener("click", async () => {
+  let text;
+  try { text = quoteSummaryText(); } catch (error) {
+    $("quoteSummaryText").value = "";
+    $("copyQuoteStatus").textContent = error.message;
+    return;
+  }
+  $("quoteSummaryText").value = text;
+  try {
+    await navigator.clipboard.writeText(text);
+    $("copyQuoteStatus").textContent = "已复制询价摘要，可粘贴给团队核价。";
+  } catch {
+    $("quoteSummaryDetails").open = true;
+    $("quoteSummaryText").focus();
+    $("quoteSummaryText").select();
+    $("copyQuoteStatus").textContent = "未能自动复制，摘要已选中，请手动复制。";
+  }
+});
 $("startOverBtn").addEventListener("click", startOver);
 $("wechatBtn").addEventListener("click", async () => {
   const wechatId = "zhengzhonghwc";

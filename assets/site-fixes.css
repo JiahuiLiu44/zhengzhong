@@ -30,6 +30,8 @@
   #nav .zz-language-in-cn-nav{padding:0;background:transparent}
 }
 @media(max-width:768px){
+  .wh-block.active{grid-template-columns:minmax(0,1fr);gap:24px}
+  .wh-block.active>*{min-width:0}
   .loop-flow{grid-template-columns:minmax(0,1fr);padding:20px;gap:24px}
   .loop-flow>*{min-width:0}
   .loop-diagram{padding:8px 0}
