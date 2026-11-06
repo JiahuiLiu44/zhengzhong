@@ -142,10 +142,13 @@
         const qty=Number(item.qty);
         if(!Number.isFinite(qty)||qty<=0)throw new Error(`Enter a positive quantity for ${addon.name}.`);
         const amount=round(Math.max(qty*addon.price,addon.minimum||0));
+        if(!Number.isFinite(amount))throw new Error(`The quantity for ${addon.name} is too large to calculate. Check the quantity and try again.`);
         lines.push({id:addon.id,name:addon.name,group:addon.group,detail:`${qty} ${quantityUnit(addon.unit,qty)} × ${money(addon.price)}${addon.note?` · ${addon.note}`:''}`,amount,display:money(amount)});
       }
     }
-    return {service,unit,lines,total:round(lines.reduce((sum,line)=>sum+line.amount,0)),hasManual:lines.some(l=>l.manual)};
+    const total=round(lines.reduce((sum,line)=>sum+line.amount,0));
+    if(!Number.isFinite(total))throw new Error('The quantities are too large to calculate. Check the quantities and try again.');
+    return {service,unit,lines,total,hasManual:lines.some(l=>l.manual)};
   }
   function quoteText(quote){
     const label=quote.hasManual?'Priced subtotal (separate freight quote required)':'Estimated handling charge';
