@@ -31,6 +31,9 @@
     const flag = 'ga-disable-' + ID;
     win[flag] = true;
     const data = pageData(win.location.href, doc.referrer, doc.title);
+    const config = {...data, send_page_view:false, allow_google_signals:false,
+      allow_ad_personalization_signals:false, cookie_expires:COOKIE_SECONDS,
+      cookie_update:false, cookie_domain:'zhengzhong.tech', cookie_path:'/', cookie_flags:'SameSite=Lax;Secure'};
     const denied = {analytics_storage:'denied', ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'};
     function gtag() { win.dataLayer.push(arguments); }
     function clearCookies() {
@@ -47,9 +50,7 @@
     function configure() {
       if (!allowed || win[flag] || !data) return;
       gtag('consent', 'update', {...denied, analytics_storage:'granted'});
-      gtag('config', ID, {...data, send_page_view:false, allow_google_signals:false,
-        allow_ad_personalization_signals:false, cookie_expires:COOKIE_SECONDS,
-        cookie_update:false, cookie_domain:'zhengzhong.tech', cookie_path:'/', cookie_flags:'SameSite=Lax;Secure'});
+      gtag('config', ID, config);
       if (!pageSent) {
         gtag('event', 'page_view', {...data, send_to:ID});
         pageSent = true;
@@ -80,7 +81,8 @@
       gtag('consent', 'default', denied);
       gtag('set', 'ads_data_redaction', true);
       gtag('set', 'url_passthrough', false);
-      gtag('set', {...data, allow_google_signals:false, allow_ad_personalization_signals:false});
+      // Apply every safeguard before the Google tag can initialize on load.
+      gtag('set', config);
       gtag('consent', 'update', {...denied, analytics_storage:'granted'});
       gtag('js', new Date());
       pending = true;
