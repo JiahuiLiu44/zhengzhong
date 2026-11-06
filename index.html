@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>郑中海外仓 - 美国本土运营中心</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link id="deferred-fonts" data-href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --navy:#1F4B7A;--navy-dark:#0d2236;--blue:#1F5C99;--blue-mid:#2471b8;--blue-light:#4a9fd4;
@@ -82,7 +83,7 @@ ul{list-style:none;}
 .hs-item:last-child{border-right:none;}
 .hs-item:hover{background:rgba(255,255,255,.06);}
 .hs-icon{font-size:32px;margin-bottom:14px;}
-.hs-item h4{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;}
+.hs-item h3{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;}
 .hs-item p{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.7;}
 /* map */
 .home-map-wrap{border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12);margin-top:52px;}
@@ -380,7 +381,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
 .nle{font-size:9px;font-weight:300;color:rgba(255,255,255,.5);letter-spacing:3px;text-transform:uppercase;}
 .fb-desc{font-size:13px;color:rgba(255,255,255,.32);line-height:2;max-width:260px;font-weight:300;}
 .f-slogan{font-size:13px;color:var(--gold);font-style:italic;margin-top:16px;}
-.footer-col h5{font-size:11px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-col h2{font-size:11px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
 .footer-col li{margin-bottom:8px;}
 .footer-col li a{font-size:13px;color:rgba(255,255,255,.35);transition:color .2s;font-weight:300;}
 .footer-col li a:hover{color:var(--gold-light);}
@@ -496,8 +497,50 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
 <link rel="alternate" hreflang="x-default" href="https://zhengzhong.tech/">
 <link rel="stylesheet" href="/assets/language-switch.css">
 <!-- /ZZ-EN-LANGUAGE-METADATA -->
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="/assets/site-fixes.css">
+<noscript><style>.page{display:block!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://zhengzhong.tech/#organization",
+      "name": "郑中海外仓",
+      "url": "https://zhengzhong.tech/",
+      "logo": "https://zhengzhong.tech/assets/optimized/zhengzhong-logo-256.webp"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://zhengzhong.tech/#website",
+      "url": "https://zhengzhong.tech/",
+      "name": "郑中海外仓",
+      "inLanguage": [
+        "zh-CN",
+        "en-US"
+      ],
+      "publisher": {
+        "@id": "https://zhengzhong.tech/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://zhengzhong.tech/#webpage",
+      "url": "https://zhengzhong.tech/",
+      "name": "郑中海外仓 - 美国本土运营中心",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://zhengzhong.tech/#website"
+      }
+    }
+  ]
+}
+</script>
+<link rel="icon" type="image/webp" href="/assets/optimized/zhengzhong-logo-96.webp">
 </head>
 <body>
+<a class="skip-link" href="#main-content">跳到正文</a>
 
 <svg class="icon-sprite" aria-hidden="true">
   <symbol id="icon-fulfillment" viewBox="0 0 24 24">
@@ -565,31 +608,35 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
   </symbol>
 </svg>
 
-<nav id="nav">
+<nav id="nav" aria-label="主导航">
   <div class="nav-wrap">
-    <div class="nav-tabs">
-      <div class="nav-tab active" data-page="home" onclick="showPage('home')">首页</div>
-      <div class="nav-tab" data-page="network" onclick="showPage('network')">仓储布局</div>
-      <div class="nav-tab" data-page="services" onclick="showPage('services')">核心服务</div>
-      <div class="nav-tab" data-page="advantages" onclick="showPage('advantages')">核心优势</div>
-      <a class="nav-tab" href="price/">自助报价</a>
-      <div class="nav-tab" data-page="tech" onclick="showPage('tech')">技术支持</div>
-      <div class="nav-tab" data-page="about" onclick="showPage('about')">关于我们</div>
-      <!-- ZZ-FLAG-LANGUAGE-ENTRY --><span class="language-switch zz-language-switch zz-language-in-cn-nav" aria-label="Language"><a class="zz-language-option" href="/en/" lang="en-US" hreflang="en-US" data-language-link="en" aria-label="English (United States)"><img class="zz-flag" src="/assets/flags/us.svg" alt="" width="24" height="16"><span class="zz-language-text">EN</span></a><a class="zz-language-option" href="/" lang="zh-CN" hreflang="zh-CN" data-language-link="zh" aria-label="Chinese (China)" aria-current="page"><img class="zz-flag" src="/assets/flags/cn.svg" alt="" width="24" height="16"><span class="zz-language-text">中文</span></a></span><!-- /ZZ-FLAG-LANGUAGE-ENTRY -->
+    <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="main-menu">菜单</button>
+    <div class="nav-tabs" id="main-menu">
+      <a class="nav-tab active" data-page="home" href="#home">首页</a>
+      <a class="nav-tab" data-page="network" href="#network">仓储布局</a>
+      <a class="nav-tab" data-page="services" href="#services">核心服务</a>
+      <a class="nav-tab" data-page="advantages" href="#advantages">核心优势</a>
+
+      <a class="nav-tab" data-page="tech" href="#tech">技术支持</a>
+      <a class="nav-tab" data-page="about" href="#about">关于我们</a>
+
     </div>
+    <a class="nav-tab quote-nav" href="price/">自助报价</a>
+    <!-- ZZ-FLAG-LANGUAGE-ENTRY --><span class="language-switch zz-language-switch zz-language-in-cn-nav" aria-label="Language"><a class="zz-language-option" href="/en/" lang="en-US" hreflang="en-US" data-language-link="en" aria-label="English (United States)"><img class="zz-flag" src="/assets/flags/us.svg" alt="" width="24" height="16"><span class="zz-language-text">EN</span></a><a class="zz-language-option" href="/" lang="zh-CN" hreflang="zh-CN" data-language-link="zh" aria-label="Chinese (China)" aria-current="page"><img class="zz-flag" src="/assets/flags/cn.svg" alt="" width="24" height="16"><span class="zz-language-text">中文</span></a></span><!-- /ZZ-FLAG-LANGUAGE-ENTRY -->
   </div>
 </nav>
 
+<main id="main-content" tabindex="-1">
 <!-- ===================== HOME ===================== -->
 <div class="page active" id="page-home">
   <div class="hero">
-    <img class="hero-aerial" data-aerial-photo src="assets/aerial-hero.jpg" alt="郑中海外仓仓库及装卸区域航拍实景">
+    <picture><source type="image/avif" srcset="/assets/optimized/aerial-hero-960.avif 960w, /assets/optimized/aerial-hero-1600.avif 1600w, /assets/optimized/aerial-hero-2200.avif 2200w" sizes="(max-width:600px) 1400px, 100vw"><source type="image/webp" srcset="/assets/optimized/aerial-hero-640.webp 640w, /assets/optimized/aerial-hero-960.webp 960w, /assets/optimized/aerial-hero-1600.webp 1600w, /assets/optimized/aerial-hero-2200.webp 2200w" sizes="(max-width:600px) 1400px, 100vw"><img class="hero-aerial" data-aerial-photo src="assets/aerial-hero.jpg" alt="郑中海外仓仓库及装卸区域航拍实景" width="2200" height="1649" fetchpriority="high" decoding="async"></picture>
     <div class="hero-inner">
       <div class="hero-logo-wrap">
         <div class="hero-logo-glow"></div>
-        <div class="hero-logo-icon logo-svg"><img src="assets/zhengzhong-logo.png" alt="郑中海外仓" style="width:128px;height:128px;object-fit:contain;border-radius:16px;display:block;"></div>
+        <div class="hero-logo-icon logo-svg"><picture><source type="image/webp" srcset="/assets/optimized/zhengzhong-logo-96.webp 96w, /assets/optimized/zhengzhong-logo-256.webp 256w" sizes="128px"><img src="assets/zhengzhong-logo.png" alt="郑中海外仓" style="width:128px;height:128px;object-fit:contain;border-radius:16px;display:block;" width="1416" height="1416" decoding="async"></picture></div>
       </div>
-      <div class="hero-brand">郑中海外仓</div>
+      <h1 class="hero-brand" tabindex="-1">郑中海外仓</h1>
       <div class="hero-tagline">不只是海外仓，更是您在<em>美国的本地运营中心</em></div>
       <p class="hero-desc">提供一件代发、FBA中转、本土POD生产、退货换标质检及定制化仓储服务<br>助力跨境卖家实现高效、稳定、低成本的美国市场布局</p>
       <div class="hero-stats">
@@ -604,19 +651,19 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
     <div class="wrap">
       <div class="reveal"><div class="sec-eye white">Our Services</div><h2 class="sec-title white">一站式仓储服务</h2><p class="sec-sub white">覆盖跨境电商全流程需求，从入仓到交付，每个环节专业可靠</p></div>
       <div class="home-svc-grid reveal">
-        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-fulfillment"></use></svg></div><h4>一件代发 FBM</h4><p>订单自动对接<br>当日生成物流轨迹</p></div>
-        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-fba"></use></svg></div><h4>FBA中转入仓</h4><p>专业贴标·打托·转运<br>合规高效入仓</p></div>
-        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-pod"></use></svg></div><h4>本土POD生产</h4><p>美东自有工厂<br>本地生产+本地发货</p></div>
-        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-returns"></use></svg></div><h4>退货换标质检</h4><p>本地接收处理<br>支持二次销售</p></div>
-        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chain"></use></svg></div><h4>全链路解决方案</h4><p>头程·清关·仓储·配送<br>一体化跨境闭环</p></div>
+        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-fulfillment"></use></svg></div><h3>一件代发 FBM</h3><p>订单自动对接<br>当日生成物流轨迹</p></div>
+        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-fba"></use></svg></div><h3>FBA中转入仓</h3><p>专业贴标·打托·转运<br>合规高效入仓</p></div>
+        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-pod"></use></svg></div><h3>本土POD生产</h3><p>美东自有工厂<br>本地生产+本地发货</p></div>
+        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-returns"></use></svg></div><h3>退货换标质检</h3><p>本地接收处理<br>支持二次销售</p></div>
+        <div class="hs-item"><div class="hs-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chain"></use></svg></div><h3>全链路解决方案</h3><p>头程·清关·仓储·配送<br>一体化跨境闭环</p></div>
       </div>
     </div>
   </section>
   <section class="section alt">
     <div class="wrap">
       <div class="reveal"><div class="sec-eye">Our Network</div><h2 class="sec-title">全美仓储网络布局</h2><p class="sec-sub">东、中、西部4仓覆盖全美，多仓联动协同，就近发货，全面提升配送效率</p></div>
-      <div id="home-map-preview" class="home-map-wrap reveal warehouse-map-v6-preview"><iframe src="warehouse-map-20261009.html" title="郑中海外仓全美仓储网络地图" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>
-      <div style="text-align:center;margin-top:28px;" class="reveal"><a class="btn-gold" onclick="showPage('network')">查看仓储详情 →</a></div>
+      <div id="home-map-preview" class="home-map-wrap reveal warehouse-map-v6-preview"><div class="map-placeholder"><a href="warehouse-map-20261009.html">打开全美仓储网络地图</a></div><iframe data-src="warehouse-map-20261009.html?embed=1" title="郑中海外仓全美仓储网络地图" loading="lazy" allow="fullscreen" allowfullscreen hidden></iframe></div>
+      <div style="text-align:center;margin-top:28px;" class="reveal"><a class="btn-gold" href="#network">查看仓储详情 →</a></div>
     </div>
   </section>
   <section class="section">
@@ -634,7 +681,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
           </div>
         </div>
         <div class="home-about-card reveal">
-          <img class="about-aerial" data-aerial-photo src="assets/aerial-about.jpg" alt="郑中海外仓仓库建筑群航拍实景">
+          <picture><source type="image/webp" srcset="/assets/optimized/aerial-about-480.webp 480w, /assets/optimized/aerial-about-800.webp 800w, /assets/optimized/aerial-about-1200.webp 1200w, /assets/optimized/aerial-about-2000.webp 2000w" sizes="(max-width:768px) 100vw, 650px"><img class="about-aerial" data-aerial-photo src="assets/aerial-about.jpg" alt="郑中海外仓仓库建筑群航拍实景" width="2000" height="1499" loading="lazy" decoding="async"></picture>
           <div class="hac-lbl">Core Differentiators · 核心差异化</div>
           <div class="hac-title">我们与同行最大的两点区别</div>
           <div class="hac-pts">
@@ -643,7 +690,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
             <div class="hac-pt"> 以领星WMS系统为主，同时支持极风系统，根据客户业务流程匹配系统方案</div>
             <div class="hac-pt"> 1对1专属客户经理，7×24小时中英双语支持，中美沟通零壁垒</div>
           </div>
-          <div style="margin-top:28px;"><a class="btn-gold" onclick="showPage('about')" style="font-size:13px;padding:11px 24px;">联系我们 →</a></div>
+          <div style="margin-top:28px;"><a class="btn-gold" href="#about" style="font-size:13px;padding:11px 24px;">联系我们 →</a></div>
         </div>
       </div>
     </div>
@@ -661,27 +708,27 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
 
 <!-- ===================== NETWORK ===================== -->
 <div class="page" id="page-network">
-  <div class="dark-hero"><div class="wrap"><div class="sec-eye white">Our Network</div><h2 class="sec-title white">仓储布局</h2><p class="sec-sub white">东、中、西部全方位覆盖，4仓联动协同，就近发货，全面提升配送效率</p></div></div>
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye white">Our Network</div><h1 class="sec-title white" tabindex="-1">仓储布局</h1><p class="sec-sub white">东、中、西部全方位覆盖，4仓联动协同，就近发货，全面提升配送效率</p></div></div>
   <section class="section alt">
     <div class="wrap">
       <div class="reveal"><div class="sec-eye">Warehouse Map</div><h2 class="sec-title">全美仓储地图</h2></div>
-      <div id="network-map-preview" class="map-embed-box reveal warehouse-map-v6-preview"><iframe src="warehouse-map-20261009.html" title="郑中海外仓全美仓储网络地图" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>
+      <div id="network-map-preview" class="map-embed-box reveal warehouse-map-v6-preview"><div class="map-placeholder"><a href="warehouse-map-20261009.html">打开全美仓储网络地图</a></div><iframe data-src="warehouse-map-20261009.html?embed=1" title="郑中海外仓全美仓储网络地图" loading="lazy" allow="fullscreen" allowfullscreen hidden></iframe></div>
     </div>
   </section>
   <section class="section">
     <div class="wrap">
       <div class="reveal"><div class="sec-eye">Warehouse Details</div><h2 class="sec-title">各仓库详细介绍</h2></div>
       <div class="wh-tabs reveal">
-        <div class="wh-tab-btn active" onclick="switchWH(this,'wh-east')"> 美东·特拉华仓 ×2</div>
-        <div class="wh-tab-btn" onclick="switchWH(this,'wh-mid')"> 美中·堪萨斯城仓</div>
-        <div class="wh-tab-btn" onclick="switchWH(this,'wh-west')"> 美西·洛杉矶仓</div>
+        <button type="button" class="wh-tab-btn active" data-warehouse="wh-east" aria-controls="wh-east" aria-pressed="true"> 美东·特拉华仓 ×2</button>
+        <button type="button" class="wh-tab-btn" data-warehouse="wh-mid" aria-controls="wh-mid" aria-pressed="false"> 美中·堪萨斯城仓</button>
+        <button type="button" class="wh-tab-btn" data-warehouse="wh-west" aria-controls="wh-west" aria-pressed="false"> 美西·洛杉矶仓</button>
       </div>
       <div class="wh-block active" id="wh-east">
         <div><div class="wh-overview"><div class="wh-ov-hd"><span class="wh-tag tag-e">美东 · 特拉华</span><h3>特拉华仓（×2）</h3><p>美国东部核心仓，双仓协同运营，覆盖东海岸主要消费城市。特拉华州全美最友好商业州之一，不征收销售税，为跨境卖家提供显著的成本优势。</p><div class="wh-tax"> Sales Tax Free · 特拉华州免销售税</div></div><div class="wh-ov-body"><div class="wh-pts"><div class="wh-pt"><div class="wh-pt-dot d-e"></div>距巴尔的摩东部分拣中心约1小时车程，快速对接主要物流节点</div><div class="wh-pt"><div class="wh-pt-dot d-e"></div>辐射纽约、费城、华盛顿DC等东海岸核心消费城市</div><div class="wh-pt"><div class="wh-pt-dot d-e"></div>靠近东海岸主要港口和高速路网，清关高效便捷</div><div class="wh-pt"><div class="wh-pt-dot d-e"></div>双仓灵活调配，有效应对旺季订单高峰，保障稳定履约</div></div><div class="wh-svc-tags"><span class="wh-svc-tag">一件代发</span><span class="wh-svc-tag">FBA中转</span><span class="wh-svc-tag">退货换标</span><span class="wh-svc-tag">拍照质检</span></div></div></div></div>
-        <div class="wh-adv-list"><div class="wh-adv-title">核心优势</div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>免销售税政策优势</h4><p>特拉华州全美唯一无销售税州，入仓商品无需缴纳销售税，有效降低库存流通成本，让每笔交易都更具竞争力。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>东海岸核心辐射圈</h4><p>覆盖全美人口最密集的东北部经济带，距纽约市中心约2小时，可实现对纽约、费城、华盛顿等主要城市的快速配送。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>港口与交通枢纽优势</h4><p>紧邻东海岸主要港口，高速路网完善，货物清关后可直接入仓，大幅缩短港口到仓库的运输时间与物流成本。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>双仓协同联动</h4><p>两个仓库灵活联动，可根据库存情况动态调拨，高峰期互相补充，确保订单处理能力稳定，不因单仓产能限制影响客户业务。</p></div></div></div>
+        <div class="wh-adv-list"><div class="wh-adv-title">核心优势</div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>免销售税政策优势</h4><p>特拉华州不征收州及地方销售税；具体业务仍可能涉及其他税费和目的地规则，按实际交易核定。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>东海岸核心辐射圈</h4><p>覆盖全美人口最密集的东北部经济带，距纽约市中心约2小时，可实现对纽约、费城、华盛顿等主要城市的快速配送。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>港口与交通枢纽优势</h4><p>紧邻东海岸主要港口，高速路网完善，货物清关后可直接入仓，大幅缩短港口到仓库的运输时间与物流成本。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-e"></div><div><h4>双仓协同联动</h4><p>两个仓库灵活联动，可根据库存情况动态调拨，高峰期互相补充，确保订单处理能力稳定，不因单仓产能限制影响客户业务。</p></div></div></div>
         <div class="delaware-gallery" aria-label="特拉华双仓实景">
-          <figure class="warehouse-photo" data-delaware-photo="300"><img src="assets/warehouse-300.jpg" alt="特拉华300号仓仓库主体航拍实景" loading="lazy"><figcaption>特拉华 · 300号仓</figcaption></figure>
-          <figure class="warehouse-photo" data-delaware-photo="70"><img src="assets/warehouse-70-building.jpg" alt="特拉华70号仓仓库主体及装卸区域航拍实景" loading="lazy"><figcaption>特拉华 · 70号仓</figcaption></figure>
+          <figure class="warehouse-photo" data-delaware-photo="300"><picture><source type="image/webp" srcset="/assets/optimized/warehouse-300-480.webp 480w, /assets/optimized/warehouse-300-800.webp 800w, /assets/optimized/warehouse-300-1200.webp 1200w, /assets/optimized/warehouse-300-2000.webp 2000w" sizes="(max-width:768px) 100vw, 650px"><img src="assets/warehouse-300.jpg" alt="特拉华300号仓仓库主体航拍实景" loading="lazy" width="4056" height="3040" decoding="async"></picture><figcaption>特拉华 · 300号仓</figcaption></figure>
+          <figure class="warehouse-photo" data-delaware-photo="70"><picture><source type="image/webp" srcset="/assets/optimized/warehouse-70-building-480.webp 480w, /assets/optimized/warehouse-70-building-800.webp 800w, /assets/optimized/warehouse-70-building-1200.webp 1200w, /assets/optimized/warehouse-70-building-2000.webp 2000w" sizes="(max-width:768px) 100vw, 650px"><img src="assets/warehouse-70-building.jpg" alt="特拉华70号仓仓库主体及装卸区域航拍实景" loading="lazy" width="4056" height="3040" decoding="async"></picture><figcaption>特拉华 · 70号仓</figcaption></figure>
         </div>
       </div>
       <div class="wh-block" id="wh-mid">
@@ -692,7 +739,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
         <div><div class="wh-overview"><div class="wh-ov-hd"><span class="wh-tag tag-w">美西 · 洛杉矶</span><h3>洛杉矶仓</h3><p>紧邻洛杉矶港与长滩港的西海岸战略仓，是跨太平洋贸易的重要门户。货物从中国出发，海运抵达后可第一时间完成清关入仓，极大压缩头程时间。</p></div><div class="wh-ov-body"><div class="wh-pts"><div class="wh-pt"><div class="wh-pt-dot d-w"></div>紧邻洛杉矶港与长滩港，具备天然海运与清关优势</div><div class="wh-pt"><div class="wh-pt-dot d-w"></div>主要服务FBA备货、入仓及西海岸市场分发</div><div class="wh-pt"><div class="wh-pt-dot d-w"></div>为西海岸客户提供快速、高效的货物流转支持</div><div class="wh-pt"><div class="wh-pt-dot d-w"></div>覆盖洛杉矶、旧金山、西雅图等西海岸主要城市</div></div><div class="wh-svc-tags"><span class="wh-svc-tag">FBA入仓</span><span class="wh-svc-tag">港口清关</span><span class="wh-svc-tag">西海岸分发</span><span class="wh-svc-tag">货物中转</span></div></div></div></div>
         <div class="wh-adv-list"><div class="wh-adv-title">核心优势</div><div class="wh-adv"><div class="wh-adv-icon ai-w"></div><div><h4>港口直达，清关高效</h4><p>洛杉矶港与长滩港合计处理全美约40%的进口货物，本仓紧邻两港，货物下船后即可快速清关入仓，有效压缩头程时间。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-w"></div><div><h4>FBA备货最优起点</h4><p>作为亚马逊FBA西部入仓的黄金起点，可高效完成验货、贴标、打托等FBA前置处理，快速入驻亚马逊仓库。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-w"></div><div><h4>西海岸市场覆盖</h4><p>洛杉矶、旧金山湾区是全美最大消费市场之一，西部仓可为这些高价值区域提供当日或次日达的本地配送服务。</p></div></div><div class="wh-adv"><div class="wh-adv-icon ai-w"></div><div><h4>东西联动分发枢纽</h4><p>配合东部特拉华仓与中部堪萨斯城仓，货物可在西部入仓后向全国灵活调拨，实现三点联动的全美高效覆盖。</p></div></div></div>
       </div>
-      <div class="multi-cta reveal"><div><h3>多仓联动，就近发货，全面降本提效</h3><p>四大仓库可灵活调拨库存，实现多点发货与就近配送。在订单量波动时保持稳定服务水平，无论旺季淡季，每位客户都能获得一致的高质量履约体验。</p></div><a class="btn-gold" onclick="showPage('about')">立即咨询合作 →</a></div>
+      <div class="multi-cta reveal"><div><h3>多仓联动，就近发货，全面降本提效</h3><p>四大仓库可灵活调拨库存，实现多点发货与就近配送。在订单量波动时保持稳定服务水平，无论旺季淡季，每位客户都能获得一致的高质量履约体验。</p></div><a class="btn-gold" href="#about">立即咨询合作 →</a></div>
     </div>
   </section>
 </div>
@@ -911,7 +958,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
 
 <!-- ===================== ADVANTAGES ===================== -->
 <div class="page" id="page-advantages">
-  <div class="dark-hero"><div class="wrap"><div class="sec-eye gold">Why Us</div><h2 class="sec-title white">核心优势</h2><p class="sec-sub white">选择我们能带来什么价值，侧重「结果」而非「工具」</p></div></div>
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye gold">Why Us</div><h1 class="sec-title white" tabindex="-1">核心优势</h1><p class="sec-sub white">选择我们能带来什么价值，侧重「结果」而非「工具」</p></div></div>
   <section class="section"><div class="wrap">
     <div class="adv-grid reveal">
       <div class="adv-item"><div class="adv-num">01</div><h3>定制化仓储方案</h3><p>支持小仓定制与大仓隔断，为每位客户打造专属仓储空间，实现独立库存管理，避免混仓与操作干扰。</p><div class="adv-cap">让您的海外仓，真正成为自己的仓</div></div>
@@ -937,7 +984,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
 
 <!-- ===================== TECH ===================== -->
 <div class="page" id="page-tech">
-  <div class="dark-hero"><div class="wrap"><div class="sec-eye white">Operations &amp; Tech</div><h2 class="sec-title white">技术支持</h2><p class="sec-sub white">我们用什么工具和设备来保障服务，侧重「能力」而非「结果」</p></div></div>
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye white">Operations &amp; Tech</div><h1 class="sec-title white" tabindex="-1">技术支持</h1><p class="sec-sub white">我们用什么工具和设备来保障服务，侧重「能力」而非「结果」</p></div></div>
   <section class="section"><div class="wrap">
     <div class="tech-grid">
       <div class="tech-card reveal"><div class="tc-num">01</div><div class="tc-icon"></div><h3>WMS仓储管理系统</h3><p>仓库以领星WMS系统（Lingxing WMS）为主要管理系统，支持订单导入、库存同步与出库管理；同时支持极风系统，可根据客户现有业务流程和平台需求选择适配方案。</p><div class="tech-tags"><span class="t-tag">领星WMS</span><span class="t-tag">极风系统</span><span class="t-tag">实时库存同步</span><span class="t-tag">订单自动导入</span></div></div>
@@ -1008,13 +1055,13 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
       <div class="proc-s"><div class="proc-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-outbound"></use></svg></div><h4>打包发货</h4><p>标准包装<br>当日出库<br>面单生成</p></div>
       <div class="proc-s"><div class="proc-icon"><svg class="ui-icon" aria-hidden="true"><use href="#icon-tracking"></use></svg></div><h4>实时追踪</h4><p>全程可视<br>轨迹实时<br>客户查询</p></div>
     </div>
-    <div class="multi-cta reveal" style="margin-top:40px;"><div><h3>四仓联动，智能调拨</h3><p>四大仓库可灵活调拨库存，实现多点发货与就近配送，在订单量波动时保持稳定的服务水平，确保不论旺季还是淡季，每位客户都能获得一致的高质量履约体验。</p></div><a class="btn-gold" onclick="showPage('about')">了解更多 →</a></div>
+    <div class="multi-cta reveal" style="margin-top:40px;"><div><h3>四仓联动，智能调拨</h3><p>四大仓库可灵活调拨库存，实现多点发货与就近配送，在订单量波动时保持稳定的服务水平，确保不论旺季还是淡季，每位客户都能获得一致的高质量履约体验。</p></div><a class="btn-gold" href="#about">了解更多 →</a></div>
   </div></section>
 </div>
 
 <!-- ===================== ABOUT ===================== -->
 <div class="page" id="page-about">
-  <div class="dark-hero"><div class="wrap"><div class="sec-eye gold">About Us</div><h2 class="sec-title white">关于我们</h2><p class="sec-sub white">建立品牌信任，传递团队背景与经营理念</p></div></div>
+  <div class="dark-hero"><div class="wrap"><div class="sec-eye gold">About Us</div><h1 class="sec-title white" tabindex="-1">关于我们</h1><p class="sec-sub white">建立品牌信任，传递团队背景与经营理念</p></div></div>
   <section class="section"><div class="wrap">
     <div class="about-layout">
       <div class="about-text reveal">
@@ -1056,7 +1103,7 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
         <div class="cl-slogan">"成功，我们共同创造！<br>Success, we create together!"</div>
       </div>
       <div class="c-items">
-        <div class="c-item"><div class="ci-ico"><svg class="ui-icon" aria-hidden="true"><use href="#icon-phone"></use></svg></div><div><div class="ci-lbl">电话 / 微信</div><div class="ci-val"><a href="tel:15238695371">15238695371</a></div></div></div>
+        <div class="c-item"><div class="ci-ico"><svg class="ui-icon" aria-hidden="true"><use href="#icon-phone"></use></svg></div><div><div class="ci-lbl">电话 / 微信</div><div class="ci-val"><a href="tel:+8615238695371">15238695371</a></div></div></div>
         <div class="c-item"><div class="ci-ico"><svg class="ui-icon" aria-hidden="true"><use href="#icon-mail"></use></svg></div><div><div class="ci-lbl">邮箱</div><div class="ci-val"><a href="mailto:shiyi@zhengzhong.tech">shiyi@zhengzhong.tech</a></div></div></div>
         <div class="c-item"><div class="ci-ico"><svg class="ui-icon" aria-hidden="true"><use href="#icon-location"></use></svg></div><div><div class="ci-lbl">总部地址</div><div class="ci-val">河南省郑州市金水区</div></div></div>
         <div class="c-item"><div class="ci-ico"><svg class="ui-icon" aria-hidden="true"><use href="#icon-clock"></use></svg></div><div><div class="ci-lbl">服务时间</div><div class="ci-val">7×24h 中英双语支持</div></div></div>
@@ -1075,20 +1122,21 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
   </div></section>
 </div>
 
+</main>
 <footer>
   <div class="wrap">
     <div class="footer-top">
       <div>
         <div class="fb-logo">
-          <div class="fb-logo-icon logo-svg"><img src="assets/zhengzhong-logo.png" alt="郑中海外仓" style="width:38px;height:38px;object-fit:contain;border-radius:6px;display:block;"></div>
+          <div class="fb-logo-icon logo-svg"><picture><source type="image/webp" srcset="/assets/optimized/zhengzhong-logo-96.webp 96w, /assets/optimized/zhengzhong-logo-256.webp 256w" sizes="48px"><img src="assets/zhengzhong-logo.png" alt="郑中海外仓" style="width:38px;height:38px;object-fit:contain;border-radius:6px;display:block;" width="1416" height="1416" decoding="async"></picture></div>
           <div class="fb-logo-text"><span class="nlc">郑中海外仓</span><span class="nle">Zhengzhong Overseas Warehouse</span></div>
         </div>
         <p class="fb-desc">隶属于河南郑中科技有限公司，专注美国本土仓储与配送，为中国跨境电商卖家提供专业化、信息化、智能化的海外仓储解决方案。</p>
         <div class="f-slogan">"成功，我们共同创造！"</div>
       </div>
-      <div class="footer-col"><h5>核心服务</h5><ul><li><a onclick="showPage('services')">一件代发 FBM</a></li><li><a onclick="showPage('services')">FBA中转入仓</a></li><li><a onclick="showPage('services')">本土POD生产</a></li><li><a onclick="showPage('services')">退货换标质检</a></li><li><a onclick="showPage('services')">全链路解决方案</a></li></ul></div>
-      <div class="footer-col"><h5>仓储网络</h5><ul><li><a onclick="showPage('network')">美东特拉华仓 ×2</a></li><li><a onclick="showPage('network')">美中堪萨斯城仓</a></li><li><a onclick="showPage('network')">美西洛杉矶仓</a></li></ul></div>
-      <div class="footer-col"><h5>联系我们</h5><ul><li><a href="tel:15238695371"> 15238695371</a></li><li><a href="mailto:shiyi@zhengzhong.tech"> shiyi@zhengzhong.tech</a></li><li><a> 郑州市金水区</a></li></ul></div>
+      <div class="footer-col"><h2>核心服务</h2><ul><li><a href="#services">一件代发 FBM</a></li><li><a href="#services">FBA中转入仓</a></li><li><a href="#services">本土POD生产</a></li><li><a href="#services">退货换标质检</a></li><li><a href="#services">全链路解决方案</a></li></ul></div>
+      <div class="footer-col"><h2>仓储网络</h2><ul><li><a href="#network">美东特拉华仓 ×2</a></li><li><a href="#network">美中堪萨斯城仓</a></li><li><a href="#network">美西洛杉矶仓</a></li></ul></div>
+      <div class="footer-col"><h2>联系我们</h2><ul><li><a href="tel:+8615238695371"> 15238695371</a></li><li><a href="mailto:shiyi@zhengzhong.tech"> shiyi@zhengzhong.tech</a></li><li><span> 郑州市金水区</span></li></ul></div>
     </div>
     <div class="footer-bot"><p>© 2025 河南郑中科技有限公司 · 郑中海外仓 · All Rights Reserved</p><p>专注美国本土仓储 · 助力中国品牌出海</p></div>
   </div>
@@ -1123,5 +1171,6 @@ window.addEventListener('scroll',function(){
 // Initialize first page
 triggerReveals();
 </script>
+<script src="/assets/site-fixes.js" defer></script>
 </body>
 </html>
