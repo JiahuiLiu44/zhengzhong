@@ -544,8 +544,19 @@ footer{background:#04090f;padding:56px 0 26px;border-top:1px solid rgba(255,255,
 <meta property="og:url" content="https://zhengzhong.tech/">
 <meta property="og:image" content="https://zhengzhong.tech/assets/aerial-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<!-- ZZ-PRIVACY-ASSETS -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/assets/privacy-consent.css">
+<script src="/assets/privacy-consent-state.js" defer></script>
+<script src="/assets/analytics.js" defer></script>
+<script src="/assets/privacy-consent.js" defer></script>
+<!-- /ZZ-PRIVACY-ASSETS -->
 </head>
 <body>
+<!-- ZZ-PRIVACY-BANNER -->
+<aside id="zz-consent-banner" class="zz-consent zz-consent--home" aria-label="统计偏好"><div class="zz-consent-inner" data-consent-panel><div class="zz-consent-copy"><span class="zz-kicker">隐私选择</span><h2>是否允许访问统计，由你选择。</h2><p>经你同意后，我们使用 Google Analytics 了解页面访问情况，改进网站。选择仅必要功能，不影响浏览、报价和联系。 <a href="/privacy/">隐私说明</a></p><small>默认不启用；你可以通过页脚随时更改选择。</small></div><div class="zz-consent-actions"><button type="button" data-consent-choice="denied">仅必要功能</button><button type="button" data-consent-choice="allowed">允许访问统计</button></div></div><div class="zz-consent-inner" data-consent-receipt hidden><div role="status"><p data-consent-current></p><small data-consent-storage></small></div><button type="button" data-consent-open>统计偏好</button></div></aside>
+<!-- /ZZ-PRIVACY-BANNER -->
+
 <a class="skip-link" href="#main-content">跳到正文</a>
 
 <svg class="icon-sprite" aria-hidden="true">
@@ -1178,5 +1189,9 @@ window.addEventListener('scroll',function(){
 triggerReveals();
 </script>
 <script src="/assets/site-fixes.js" defer></script>
+<!-- ZZ-PRIVACY-FOOTER -->
+<div class="zz-privacy-links" aria-label="隐私说明"><a href="/privacy/">隐私说明</a><button type="button" data-consent-open>统计偏好</button><span>访问统计可自由选择</span></div>
+<dialog id="zz-consent-dialog" class="zz-privacy-dialog" aria-labelledby="zz-consent-dialog-title"><span class="zz-kicker">隐私选择</span><h2 id="zz-consent-dialog-title">统计偏好</h2><p data-consent-current>尚未选择，访问统计保持关闭。</p><div class="zz-choice-row"><strong>必要功能 · 始终可用</strong><p>页面展示、导航、报价计算，以及记住本浏览器的隐私选择。</p></div><div class="zz-choice-row"><strong>可选访问统计</strong><p>默认关闭，仅在主动同意后启用。仅统计基础页面与会话信息，不启用广告功能，也不传送表单内容或报价输入。</p></div><p><a href="/privacy/">隐私说明</a></p><div class="zz-consent-actions"><button type="button" data-consent-choice="denied">仅必要功能</button><button type="button" data-consent-choice="allowed">允许访问统计</button></div><button type="button" data-consent-close>关闭，不更改选择</button><p><small>默认不启用；你可以通过页脚随时更改选择。</small></p></dialog>
+<!-- /ZZ-PRIVACY-FOOTER -->
 </body>
 </html>
