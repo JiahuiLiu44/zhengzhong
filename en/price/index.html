@@ -56,8 +56,19 @@
 }
 </script>
 <link rel="icon" type="image/webp" href="/assets/optimized/zhengzhong-logo-96.webp">
+<!-- ZZ-PRIVACY-ASSETS -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/assets/privacy-consent.css">
+<script src="/assets/privacy-consent-state.js" defer></script>
+<script src="/assets/analytics.js" defer></script>
+<script src="/assets/privacy-consent.js" defer></script>
+<!-- /ZZ-PRIVACY-ASSETS -->
 </head>
 <body>
+<!-- ZZ-PRIVACY-BANNER -->
+<aside id="zz-consent-banner" class="zz-consent" aria-label="Analytics preferences"><div class="zz-consent-inner" data-consent-panel><div class="zz-consent-copy"><span class="zz-kicker">PRIVACY & YOUR CHOICE</span><h2>Your choice, before analytics.</h2><p>With your permission, we use Google Analytics to understand page visits and improve this website. Choosing necessary features only keeps browsing and quoting available. <a href="/en/privacy/">Privacy notice</a></p><small>Off by default. Change your choice at any time using the footer.</small></div><div class="zz-consent-actions"><button type="button" data-consent-choice="denied">Necessary only</button><button type="button" data-consent-choice="allowed">Allow analytics</button></div></div><div class="zz-consent-inner" data-consent-receipt hidden><div role="status"><p data-consent-current></p><small data-consent-storage></small></div><button type="button" data-consent-open>Analytics preferences</button></div></aside>
+<!-- /ZZ-PRIVACY-BANNER -->
+
   <a class="skip-link" href="#quoteForm">Skip to quote calculator</a>
   <main class="app-shell">
     <header class="topbar">
@@ -188,5 +199,9 @@
   </main>
   <script src="pricing-core.js?v=20261025-1"></script>
   <script src="app.js?v=20261025-1"></script>
+<!-- ZZ-PRIVACY-FOOTER -->
+<div class="zz-privacy-links" aria-label="Privacy notice"><a href="/en/privacy/">Privacy notice</a><button type="button" data-consent-open>Analytics preferences</button><span>Visit analytics is optional</span></div>
+<dialog id="zz-consent-dialog" class="zz-privacy-dialog" aria-labelledby="zz-consent-dialog-title"><span class="zz-kicker">PRIVACY & YOUR CHOICE</span><h2 id="zz-consent-dialog-title">Analytics preferences</h2><p data-consent-current>No choice yet. Analytics stays off.</p><div class="zz-choice-row"><strong>Necessary features · always available</strong><p>Page display, navigation, the quote calculator, and remembering this browser’s privacy choice.</p></div><div class="zz-choice-row"><strong>Optional visit analytics</strong><p>Off until you choose to allow it. The scope is basic page and session statistics, without advertising, form contents, or quote inputs.</p></div><p><a href="/en/privacy/">Privacy notice</a></p><div class="zz-consent-actions"><button type="button" data-consent-choice="denied">Necessary only</button><button type="button" data-consent-choice="allowed">Allow analytics</button></div><button type="button" data-consent-close>Close without changing</button><p><small>Off by default. Change your choice at any time using the footer.</small></p></dialog>
+<!-- /ZZ-PRIVACY-FOOTER -->
 </body>
 </html>
