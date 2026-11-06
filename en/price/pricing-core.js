@@ -51,7 +51,7 @@
     {id:'photo',group:'inspection',name:'Product Photography',unit:'photo',price:1},
     {id:'video',group:'inspection',name:'Product Video Recording',unit:'video',price:5},
     {id:'inspect',group:'inspection',name:'Packaging and Visual Inspection',unit:'item',price:2},
-    {id:'destroy',group:'handling',name:'Disposal',unit:'kg',price:1,minimum:50,note:'Excludes electronics and battery products. Minimum $50 per shipment.'},
+    {id:'destroy',group:'handling',name:'Disposal',unit:'kg',price:1,note:'Excludes electronics and battery products. No minimum charge.'},
     {id:'dimensionCheck',group:'inspection',name:'Dimensions and Weight Verification',unit:'item',price:5},
     {id:'detentionBox',group:'holding',name:'Pickup Delay Holding Fee · Cartons',unit:'carton/day',price:1,note:'Applies when goods are ready but not picked up by the customer. Begins on the fifth business day, excluding weekends and holidays. The pickup day counts as one day.'},
     {id:'detentionPallet',group:'holding',name:'Pickup Delay Holding Fee · Pallets',unit:'pallet/day',price:8,note:'Applies when goods are ready but not picked up by the customer. Begins on the fifth business day, excluding weekends and holidays. The pickup day counts as one day.'},
@@ -86,7 +86,7 @@
     otherServices:[
       'The estimate includes the additional services and quantities selected here. All amounts are in USD.',
       'Truck delivery / final-mile freight requires a separate quote. If selected, it is not included in the priced subtotal.',
-      'Disposal costs $1/kg, with a minimum of $50 per shipment. Electronics and battery products are excluded. The minimum is applied to disposal before adding other selected services.',
+      'Disposal costs $1/kg with no minimum charge. Electronics and battery products are excluded.',
       'Pickup delay holding begins on the fifth business day after goods are ready for customer pickup, excluding weekends and holidays. The pickup day counts as one day. Enter the billable carton-days or pallet-days, as applicable.',
       'Return picked inventory to storage applies after a dispatch is canceled. Return-to-stock processing applies to returned goods originally dispatched by us; inspection is separate. Final charges depend on actual work and system records.',
     ],
